@@ -1,0 +1,21 @@
+a, h1, h2, h3, h4, h5, h6 {color: #000000;}
+
+#header-global, #nav, #sidenav, #footer, #subFooter, #search-inBanner, p.skipNav, #sidebar {display: none;}
+
+#content {padding-top: 0;
+margin-top: 0;
+}
+.home #content {
+border: 0;
+}
+#header h1 {
+background: none;
+text-indent: 20px;
+margin-top: 35px;
+}
+#logo p a img{
+	left: 0;
+}
+#main #content {
+width: 900px;
+}
