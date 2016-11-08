@@ -12,20 +12,19 @@
     <title>Welcome to Duke Sakai</title>
 
     <!--[if (lt IE 9)]>
-      <link href="/library/skin/duke-default/tool-ie.css?version=" rel="stylesheet">
+      <link href="https://sakai.duke.edu/library//skin/duke-default/tool-ie.css?version=" rel="stylesheet">
     <![endif]-->
 
-    <link href="/library/skin/duke-default/tool.css" rel="stylesheet">
-    <link href="/library/skin/duke-default/tool.css?version=" rel="stylesheet" media="screen, tty, tv, handheld, projection">
+    <link href="https://sakai.duke.edu/library/skin/duke-default/tool.css" rel="stylesheet">
+    <link href="https://sakai.duke.edu/library/skin/duke-default/tool.css?version=" rel="stylesheet" media="screen, tty, tv, handheld, projection">
+    <link href="https://sakai.duke.edu/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
 
-
-    <link href="/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
-    <link href="/library/webjars/jquery-ui/1.11.3/jquery-ui.min.css?version=" rel="stylesheet" />
-    <link href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
-    <link href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
-    <link href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
+    <link href="https://sakai.duke.edu/library/webjars/jquery-ui/1.11.3/jquery-ui.min.css?version=" rel="stylesheet" />
+    <link href="https://sakai.duke.edu/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
+    <link href="https://sakai.duke.edu/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
+    <link href="https://sakai.duke.edu/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
     <link rel="stylesheet" href="https://brandbar.oit.duke.edu/footer_new/css/footer.css" type="text/css">
-    <script src="/library/skin/duke-default/js/lib/modernizr.js?version="></script>
+    <script src="https://sakai.duke.edu/library/skin/duke-default/js/lib/modernizr.js?version="></script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,9 +34,7 @@
     <![endif]-->
 
       <style type="text/css">
-      body {
 
-      }
         .Mrphs-topHeader {
           font-size:1em;
         }
@@ -77,7 +74,7 @@
           margin: 0;
         }
         .navbar-logo>li {
-            float: left;
+          float: left;
         }
         .navbar-brand {
           padding: 0 1em;
@@ -93,7 +90,7 @@
           letter-spacing: .1em;
         }
         .jumbotron {
-                background: url('/library/skin/duke-default/images/banner.jpg') no-repeat right center fixed; 
+          background: url('https://sakai.duke.edu/library/skin/duke-default/images/banner.jpg') no-repeat right center fixed;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
@@ -121,17 +118,49 @@
         .well hr {
           border-color:#6a5b4f;
         }
+
+
+
+
+        .alert-success h2 {
+          color: #3c763d;
+        }
+
+        .alert-danger p a, .alert-danger p a:hover {
+          color: #3c763d;
+          text-decoration: none;
+        }
+
+        .alert-danger p a:hover {
+          color: #3c763d;
+          text-decoration: underline;
+        }
+
+        .alert-danger h2 {
+          color: #a94442;
+        }
+
+        .alert-danger p a, .alert-danger p a:hover {
+          color: #a94442;
+          text-decoration: none;
+        }
+
+        .alert-danger p a:hover {
+          text-decoration: underline;
+        }
+
+        .alert p {
+          font-size: 15px;
+        }
+
+        .alert p br {
+          display: block;
+          content: "";
+          margin-top: .5em;
+        }
+
       </style>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-67434859-1', 'auto');
-        ga('send', 'pageview');
-
-      </script>
   </head>
 
   <body class="dukeSakaiGateway">
@@ -149,7 +178,7 @@
 
             <ul class="nav navbar-nav navbar-logo">
               <li class="">
-              <a href="http://www.duke.edu" class="logo"><img src="/library/skin/duke-default/images/dukeLogo.png" alt="Duke University Logo" /></a>
+              <a href="http://www.duke.edu" class="logo"><img src="https://sakai.duke.edu/library//skin/duke-default/images/dukeLogo.png" alt="Duke University Logo" /></a>
             </li>
             <li>
               <a href="https://sakai.duke.edu" class="textLogo">Sakai</a>
@@ -185,8 +214,8 @@
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
-        
-       
+
+
 
 
       </div><!-- /.container-fluid -->
@@ -198,16 +227,32 @@
       <div class="container">
         <div class="well">
         <h1>New Look, New Features</h1>
-            <p>Duke Sakai now offers a mobile-friendly interface, a new Gradebook, new content layout in the Lessons, streamlined settings in Tests, and drag and drop file upload in the Resources tool.</p>
-            <hr />
-            <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning activities.</p>
 
-            <h2>New to Sakai?</h2>
-            <a class="btn-primary" href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/">View quick start guides</a>
-             <a class="btn-primary" href="https://cit.duke.edu/events/sakai/">Sign up for a workshop</a>
-            
-           
-         
+          <div class="row">
+
+            <div class="col-md-8">
+              <p>Duke Sakai now offers a mobile-friendly interface, a new Gradebook, new content layout in the Lessons, streamlined settings in Tests, and drag and drop file upload in the Resources tool.</p>
+              <hr />
+              <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning activities.</p>
+
+              <h2>New to Sakai?</h2>
+              <a class="btn-primary" href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/">View quick start guides</a>
+              <a class="btn-primary" href="https://cit.duke.edu/events/sakai/">Sign up for a workshop</a>
+            </div>
+
+            <div class="col-md-4">
+
+              <div id="alert-wrapper">
+                <h2 id="alert-title"></h2>
+                <p id="alert-status"></p>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -227,38 +272,108 @@
          <h2>Updated Lessons Tool</h2>
          <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/Do47tdqF1wg?rel=0" frameborder="0" allowfullscreen></iframe> </p>
        </div>
-        
+
       </div>
 
       <hr>
 
      <footer id="colophon" role="contentinfo">
-      
-      
 
-     
 
      </footer><!-- #colophon -->
     </div> <!-- /container -->
+
+    <script src="https://sakai.duke.edu/library/webjars/jquery/1.11.3/jquery.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/webjars/jquery-migrate/1.4.0/jquery-migrate.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/webjars/bootstrap/3.3.6/js/bootstrap.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/js/trimpath-template-latest.js?version="></script>
+    <script src="https://sakai.duke.edu/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/webjars/pnotify/2.1.0/pnotify.core.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
+    <script src="https://sakai.duke.edu/library/js/jquery/qtip/tutorial.js?version="></script>
     <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
-
-
-   <script src="/library/webjars/jquery/1.11.3/jquery.min.js?version="></script>
-   <script src="/library/webjars/jquery-migrate/1.4.0/jquery-migrate.min.js?version="></script>
-   <script src="/library/webjars/bootstrap/3.3.6/js/bootstrap.min.js?version="></script>
-   <script src="/library/webjars/jquery-ui/1.11.3/jquery-ui.min.js?version="></script>
-   <link rel="stylesheet" href="/library/webjars/jquery-ui/1.11.3/jquery-ui.min.css?version=">
-    <script src="/library/js/trimpath-template-latest.js?version="></script>
-    <script src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
-    <script src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
-
-    <script src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/tutorial.js?version="></script>
-
     <!--[if lt IE 9]>
-            <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
+      <script src="https://sakai.duke.edu/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
     <![endif]-->
+
+    <script src="js/anchorme.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function (){
+
+
+      // TEMP Code
+
+      function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+          var pair = vars[i].split("=");
+          if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+      }
+
+      // END Temp Code
+
+
+      // api feed
+      var sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+      $.ajaxSetup({ cache: false });
+      $.getJSON(sakaiAPI, function(data){
+
+        // loop through array
+        $.each(data, function(index, i){
+
+
+          //var alertTerm = 'sakai'; // look for 'sakai' in title
+
+          var alertTerm = getQueryVariable("term"); // temp code to enable term switching for testing!
+
+          if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
+
+            console.log(i.name);
+            console.log(i.status);
+            console.log(i.incident_updates[0].status);
+            console.log(i.incident_updates[0].body);
+
+            // check the status - we don't want to show resolved
+            if (i.status.toLowerCase() != "resolved") {
+              document.getElementById('alert-title').innerHTML = i.name;
+              var alertContent = i.incident_updates[0].body.replace(/(?:\r\n|\r|\n)/g, '<br />') // replace linebreaks
+              alertContent = anchorme.js(alertContent); // link up URLs
+              document.getElementById('alert-status').innerHTML = alertContent;
+              document.getElementById("alert-wrapper").className = "alert alert-danger";
+            }
+
+            // default message
+            else {
+              document.getElementById('alert-title').innerHTML = "All is Well";
+              document.getElementById('alert-status').innerHTML = "Sakai is running fine";
+              document.getElementById("alert-wrapper").className = "alert alert-success";
+            }
+
+            // break the each loop - we just need the first result
+            return false;
+
+          }
+        });
+      });
+    });
+
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-67434859-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
 
   </body>
 </html>
