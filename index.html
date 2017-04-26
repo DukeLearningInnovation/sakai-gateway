@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -261,12 +262,12 @@
                     <li><a href="https://support.sakai.duke.edu/sakai-basics/examples/">See examples</a></li>
                     <li><a href="https://support.sakai.duke.edu/sakai-training-and-support/">Ask for help</a></li>
                   </ul>
-                  <p>Faculty and TAs, <a href="https://cit.duke.edu/events/open-office-hours/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_officehours">drop into CIT Office Hours</a> to explore ideas, address challenges and create projects that improve your experience as an instructor and enhance student learning.</p>p>
+                  <p>Faculty and TAs, <a href="https://cit.duke.edu/events/open-office-hours/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_officehours">drop into CIT Office Hours</a> to explore ideas, address challenges and create projects that improve your experience as an instructor and enhance student learning.</p>
                 </div>
                 <div class="col-md-6">
                   <div id="alert-wrapper">
-                    <h4 id="alert-title"></h4>
-                    <p id="alert-status"></p>
+                    <div id="alert-title"></div>
+                    <div id="alert-status"></div>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -343,24 +344,24 @@
 
           if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
 
-            console.log(i.name);
-            console.log(i.status);
-            console.log(i.incident_updates[0].status);
-            console.log(i.incident_updates[0].body);
+            //console.log(i.name);
+            //console.log(i.status);
+            //console.log(i.incident_updates[0].status);
+            //console.log(i.incident_updates[0].body);
 
             // check the status - we don't want to show resolved
             if (i.status.toLowerCase() != "resolved") {
-              document.getElementById('alert-title').innerHTML = i.name;
+              document.getElementById('alert-title').innerHTML = '<h4>' + i.name + '</h4>';
               var alertContent = i.incident_updates[0].body.replace(/(?:\r\n|\r|\n)/g, '<br />') // replace linebreaks
               alertContent = anchorme.js(alertContent); // link up URLs
-              document.getElementById('alert-status').innerHTML = alertContent;
+              document.getElementById('alert-status').innerHTML = '<p>' + alertContent + '</p>';
               document.getElementById("alert-wrapper").className = "alert alert-danger";
             }
 
-            // default message
+            // all is well message
             else {
-              document.getElementById('alert-title').innerHTML = "Sakai Status";
-              document.getElementById('alert-status').innerHTML = "All systems operational";
+              document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+              document.getElementById('alert-status').innerHTML = "<p>All systems operational</p>";
               document.getElementById("alert-wrapper").className = "alert alert-success";
             }
 
@@ -368,6 +369,16 @@
             return false;
 
           }
+
+          // default message
+          else {
+            document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+            document.getElementById('alert-status').innerHTML = "<p>All systems operational</p>";
+            document.getElementById("alert-wrapper").className = "alert alert-success";
+          }
+
+
+
         });
       });
     });
