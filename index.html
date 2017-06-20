@@ -58,9 +58,19 @@
         }
         .navbar-default .navbar-nav>li>a:hover,
         .navbar-default .navbar-nav>li>a:focus,
-        .navbar-default .navbar-nav>.active>a {
+        .navbar-default .navbar-nav>.active>a,
+        .navbar-default .navbar-nav>.open>a,
+        .navbar-default .navbar-nav>.open>a:hover,
+        .navbar-default .navbar-nav>.open>a:focus,
+        .navbar-nav>li>.dropdown-menu {
           color: #363636;
-          background-color: #F9C148;
+          background-color: #ffe89e;
+        }
+        @media (max-width: 767px) {
+          .navbar-nav .open .dropdown-menu {
+            color: #363636;
+            background-color: #ffe89e;
+          }
         }
         .navbar-default .navbar-nav>li>.logo:hover,
         .navbar-default .navbar-nav>li>.logo:focus{
@@ -84,104 +94,69 @@
           padding: 5px 15px 0 0;
         }
         .navbar-default .navbar-nav>li>.textLogo {
-          color:#FFD960;
-          border-left: 1px solid #FFD960;
+          color:#ffe89e;
+          border-left: 1px solid #ffe89e;
           padding: 15px;
           text-transform: uppercase;
           letter-spacing: .1em;
         }
         .jumbotron {
-          background: url('/library/skin/duke-default/images/banner.jpg') no-repeat right center fixed;
+          background: url('/library/skin/duke-default/images/banner.jpg') no-repeat right center fixed #fff;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
           background-size: cover;
         }
+        .jumbotron h1 {
+          color:#0736A4;
+        }
         .jumbotron p {
           font-size:16px;
         }
-        .row-transparent {
+        .container-transparent {
           background-color:rgba(230,235,246,.8);
         }
-        .well {
-          background: none;
-          border: none;
-          box-shadow: none;
-        }
-        .well-opaque {
-          background-color: rgba(230,235,246,1);
-
-
-        }
-        @media (min-width: 992px) {
-          .well-opaque {
-
-            margin: 0 -15px 0 0;
-
-          }
-        }
-        .well h1,
-        .well h2,
-        .well h3 {
-          color: #001A57;
-        }
-        .well a[href].btn-primary {
+        a[href].btn-primary {
           color: #363636 !important;
-          background-color: #F9C148;
+          background-color: #ffe89e;
           font-size: 21px;
           border:none;
+          border-bottom: 5px solid #ffd960;
           margin-top:0;
         }
-        .well a[href].btn-primary:hover {
-          color:#fff !important;
+         a[href].btn-primary:hover {
+          background: #ffd960;
         }
-        .well hr {
-          border-color:#6a5b4f;
-        }
-        .container-white {
-          background:#fff;
-        }
-
-
         .alert-success {
           border-color: #b7caa7;
         }
-
         .alert-danger {
           border-color: #caa7ac;
         }
-
         .alert-success h2 {
           color: #3c763d;
         }
-
         .alert-danger p a, .alert-danger p a:hover {
           color: #3c763d;
           text-decoration: none;
         }
-
         .alert-danger p a:hover {
           color: #3c763d;
           text-decoration: underline;
         }
-
         .alert-danger h2 {
           color: #a94442;
         }
-
         .alert-danger p a, .alert-danger p a:hover {
           color: #a94442;
           text-decoration: none;
         }
-
         .alert-danger p a:hover {
           text-decoration: underline;
         }
-
         .alert p {
           font-size: 15px;
         }
-
         .alert p br {
           display: block;
           content: "";
@@ -195,7 +170,6 @@
   <body class="dukeSakaiGateway">
     <nav class="navbar navbar-default ">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header ">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -213,17 +187,22 @@
               </li>
             </ul>
           </header>
-        </div><!-- /navbar-header -->
+        </div><!-- /.navbar-header -->
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="Mrphs-sitesNav__menuitem ">
               <a href="https://support.sakai.duke.edu/about/" title="About" role="menuitem" >About Sakai</a>
             </li>
-            <li class="Mrphs-sitesNav__menuitem ">
-              <a href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/" title="About" role="menuitem" >Sakai Basics</a>
-            </li>
+            <li class="dropdown Mrphs-sitesNav__menuitem ">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Started <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="" href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/">View quick start guides</a></li>
+                <li><a class="" href="https://cit.duke.edu/events/sakai-workshops/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_workshops">Sign up for a workshop</a></li>
+                <li><a class="" href="https://cit.duke.edu/events/open-office-hours/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_officehours">Stop by CIT Office Hours</a></li>
+                <li><a href="https://support.sakai.duke.edu/sakai-basics/examples/">See examples</a></li>
+              </ul>
+            </li><!-- /.dropdown -->
             <li class="Mrphs-sitesNav__menuitem ">
               <a href="https://support.sakai.duke.edu/sakai-basics/examples/" title="About" role="menuitem" >Examples</a>
             </li>
@@ -235,7 +214,7 @@
             <li class="Mrphs-sitesNav__menuitem active">
               <a href="/portal/login" title="Top FAQs" role="menuitem" >
                 <i class="fa fa-sign-in"></i>
-                <span class="">Login to Duke Sakai</span>
+                <span class="">Login to Sakai</span>
               </a>
             </li>
           </ul>
@@ -243,97 +222,65 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-      <div class="jumbotron">
-      <div class="container">
-        <div class="row row-transparent">
-          <!-- Main jumbotron for a primary marketing message or call to action -->
-
+    <div class="jumbotron">
+      <div class="container container-transparent">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Welcome to Sakai</h1>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-8">
-            <div class="well ">
-              <h1>Welcome to Sakai</h1>
-              <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning.</p>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <a href="/portal/login" class="btn-primary">
-                    <i class="fa fa-sign-in"></i>
-                    <span class="">Login to Duke Sakai</span>
-                  </a>
-                  <p>As of July 5, 2017 faculty and staff must use <a href="https://oit.duke.edu/what-we-do/applications/multi-factor-authentication">multi-factor authentication</a> to log in when off Duke's network.</p>
-                  </div>
-                  <div class="col-md-6">
-                    <h2>Get Started with Sakai</h2>
-                      <ul><li><a class="" href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/">View quick start guides</a></li>
-                      <li><a class="" href="https://cit.duke.edu/events/sakai-workshops/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_workshops">Sign up for a workshop</a></li>
-                      <li><a href="https://support.sakai.duke.edu/sakai-basics/examples/">See examples</a></li>
-                      <li><a href="https://support.sakai.duke.edu/sakai-training-and-support/">Ask for help</a></li>
-                    </ul>
-                    <p>Faculty and TAs, <a href="https://cit.duke.edu/events/open-office-hours/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_officehours">drop into CIT Office Hours</a> to explore ideas, address challenges and create projects that improve your experience as an instructor and enhance student learning.</p>
-                  <div id="alert-wrapper">
-                    <div id="alert-title"></div>
-                    <div id="alert-status"></div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-                </div>
+            <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="/portal/login" class="btn-primary">
+                  <i class="fa fa-sign-in"></i>
+                  <span class="">Login to Sakai</span>
+                </a>
+              </div>
             </div>
-          </div>
-
+          </div><!-- /.col-md-8 for info -->
           <div class="col-md-4 ">
-            <div class="well well-opaque">
-            <iframe src="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey" frameborder="0" align='center' height="464" width="100%" ></iframe>
-          </div>
-        </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container-fluid container-white">
+            <div class="alert alert-info">
+              <h4>Changes to Sakai Login</h4>
+              <p>As of July 5, 2017 faculty and staff must use <a href="https://oit.duke.edu/what-we-do/applications/multi-factor-authentication">multi-factor authentication</a> to log into Sakai when off Duke's network.</p>
+            </div>
+            <div id="alert-wrapper">
+              <div id="alert-title"></div>
+              <div id="alert-status"></div>
+            </div>
+          </div><!-- /.col-md-4 for alerts -->
+        </div><!-- /.row -->
+      </div><!-- /.container-transparent for background image-->
+    </div><!-- /.jumbotron -->
+    <hr />
+    <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <h2>Overview of New Features</h2>
+        <div class="col-md-6">
+          <h4>We love to hear your feedback on Sakai.</h4>
+          <iframe src="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey" frameborder="0" align='center' height="580" width="100%" ></iframe>
+        </div><!-- /.col-md-6 for Feedback Survey -->
+        <div class="col-md-6">
           <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/V2en8CwkgVw?rel=0" frameborder="0" allowfullscreen></iframe> </p>
-        </div>
-        <div class="col-md-4">
-          <h2>A New Gradebook</h2>
           <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/PZfIuHiRWko?rel=0" frameborder="0" allowfullscreen></iframe></p>
-       </div>
-       <div class="col-md-4">
-         <h2>Updated Lessons Tool</h2>
-         <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/Do47tdqF1wg?rel=0" frameborder="0" allowfullscreen></iframe> </p>
-       </div>
+          <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/Do47tdqF1wg?rel=0" frameborder="0" allowfullscreen></iframe> </p>
+        </div><!-- /.col-md-6 for videos -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
 
-      </div><!-- /row -->
-    </div>
-
-
-     <footer id="colophon" role="contentinfo">
-
-
-     </footer><!-- #colophon -->
-
+    <footer id="colophon" role="contentinfo"></footer><!-- #colophon -->
 
     <script src="/library/webjars/jquery/1.11.3/jquery.min.js?version="></script>
     <script src="/library/webjars/jquery-migrate/1.4.0/jquery-migrate.min.js?version="></script>
     <script src="/library/webjars/bootstrap/3.3.6/js/bootstrap.min.js?version="></script>
-    <script src="/library/js/trimpath-template-latest.js?version="></script>
-    <script src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
-    <script src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
-    <script src="/library/webjars/pnotify/2.1.0/pnotify.core.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/tutorial.js?version="></script>
     <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
     <!--[if lt IE 9]>
       <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
     <![endif]-->
 
     <script src="js/anchorme.min.js"></script>
-
     <script type="text/javascript">
-
     $(document).ready(function (){
 
       // api feed
@@ -365,7 +312,7 @@
             // all is well message
             else {
               document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-              document.getElementById('alert-status').innerHTML = "<p>All systems operational</p>";
+              document.getElementById('alert-status').innerHTML = "<p>All systems operational.</p>";
               document.getElementById("alert-wrapper").className = "alert alert-success";
             }
 
@@ -397,7 +344,11 @@
       ga('create', 'UA-67434859-1', 'auto');
       ga('send', 'pageview');
     </script>
-
-
+    <script src="/library/js/trimpath-template-latest.js?version="></script>
+    <script src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
+    <script src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
+    <script src="/library/webjars/pnotify/2.1.0/pnotify.core.min.js?version="></script>
+    <script src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
+    <script src="/library/js/jquery/qtip/tutorial.js?version="></script>
   </body>
 </html>
