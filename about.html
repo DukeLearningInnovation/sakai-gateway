@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Duke University">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Welcome to Duke Sakai</title>
+    
+    <!--[if (lt IE 9)]>
+      <link href="/library/skin/duke-default/tool-ie.css?version=" rel="stylesheet">
+    <![endif]-->
+
+    <link type="text/css" href="/library/skin/duke-default/tool.css" rel="stylesheet" media="screen, tty, tv, handheld, projection">
+    <link type="text/css" href="https://brandbar.oit.duke.edu/footer_new/css/footer.css" rel="stylesheet" >
+    
+    <script type="text/javascript" src="/library/skin/duke-default/js/lib/modernizr.js?version="></script>
+    <script type="text/javascript" src="/library/js/headscripts.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version="></script>
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+   
+
+    <style type="text/css">
+        body {
+          background: #fafafa;
+          color:#444;
+        }
+        .Mrphs-topHeader {
+          font-size:1em;
+        }
+        .navbar {
+          background: #0736A4;
+          color:#fff;
+          border:none;
+          border-radius: 0;
+          margin-bottom:0;
+        }
+        
+        
+        .navbar-default .navbar-toggle {
+          border-color:#fff;
+        }
+        .navbar-default .navbar-toggle .icon-bar {
+          background-color:#fff;
+        }
+        .navbar-default .navbar-nav>li>a {
+          color:#fff;
+          text-decoration: none;
+        }
+        .navbar-default .navbar-nav>li>a:hover,
+        .navbar-default .navbar-nav>li>a:focus,
+        .navbar-default .navbar-nav>.active>a,
+        .navbar-default .navbar-nav>.open>a,
+        .navbar-default .navbar-nav>.open>a:hover,
+        .navbar-default .navbar-nav>.open>a:focus,
+        .navbar-nav>li>.dropdown-menu {
+          color: #363636;
+          background-color: #ffe89e;
+        }
+        
+        .navbar-default .navbar-nav>li>.logo:hover,
+        .navbar-default .navbar-nav>li>.logo:focus{
+          background: transparent;
+        }
+        .navbar-default .navbar-nav>.active>a:hover,
+        .navbar-default .navbar-nav>.active>a:focus {
+          background: #001A57;
+          color:#E8E5E2;
+        }
+        .navbar-logo{
+          margin: 0;
+        }
+        .navbar-logo>li {
+          float: left;
+        }
+        .navbar-brand {
+          padding: 0 1em;
+        }
+        .navbar .logo{
+          padding: 5px 15px 0 0;
+        }
+        .navbar-logo img {
+          width:83px;
+          height:auto;
+        }
+        .navbar-default .navbar-nav>li>.textLogo {
+          color:#ffe89e;
+          border-left: 1px solid #ffe89e;
+          padding: 15px;
+          text-transform: uppercase;
+          letter-spacing: .1em;
+        }
+        .system-status {
+          height: auto;
+          width: 100%;
+        }
+        .system-status .alert {
+          margin: 5px 0;
+          border-radius: 2px;
+          padding:9px 15px;
+          line-height: 20px;
+        }
+        .jumbotron {
+          background: #fafafa;
+          margin-top:50px;
+          margin-bottom:0;
+          
+        }
+        .jumbotron h1 {
+          color:#00529b;
+        }
+        .jumbotron p {
+          font-size:16px;
+        }
+        .card {
+          background-color:#fff;
+          border-radius: 2px;
+          margin-bottom:30px;
+          box-shadow: 0 1px 2px rgba(0,0,0,.1);
+
+        }
+        .jumbotron .card {
+          margin-bottom: 0;
+        }
+        .card.alert {
+          padding:0;
+        }
+        .card.alert-info {
+          background:#d9edf7;
+        }
+        .card.alert-warning {
+          background:#fcf8e3;
+        }
+        .card.alert-danger {
+          background:#f2dede;
+        }
+        .card .card-header {
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          padding:0 15px;
+          line-height: 2;
+          margin:0;
+          font-weight: 400;
+          /* background:#eee; */
+          
+        }
+        .card .card-body {
+          padding:15px;
+        }
+        a[href].btn-primary {
+          font-size:1.4em;
+        }
+         a[href].btn-primary:hover {
+          
+        }
+        
+        #colophon {
+          margin-top:30px;
+        }
+        /* About page styles */
+        .margin-top {
+            margin-top:78px;
+        }
+        .sidebar .card-body {
+            padding:0;
+        }
+        .sidebar ul {
+            padding:0;
+        }
+        .sidebar li {
+            list-style: none;
+            border-bottom:1px solid rgba(0,0,0,.1);
+            margin:0;
+            padding: 0;
+        }
+        .sidebar li a {
+            padding: 7px 15px;
+            display: inline-block;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+          .jumbotron {
+            padding-bottom:30px;
+          }
+          .system-status {
+            width: 250px;
+          }
+          
+        }
+    </style>
+
+    <link type="text/css" href="/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
+    <link type="text/css" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css?version=" rel="stylesheet" />  
+    <link type="text/css" href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=" rel="stylesheet">
+  </head>
+
+  <body class="dukeSakaiGateway">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        
+      <div class="row-header">
+        <div class="navbar-header ">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <header role="banner" class="navbar-brand Mrphs-headerLogo">
+            <ul class="nav navbar-nav navbar-logo">
+              <li class="">
+                <a href="http://www.duke.edu" class="logo"><img src="/library/skin/duke-default/images/dukeLogo@2x.png" alt="Duke University Logo" /></a>
+              </li>
+              <li>
+                <a href="/" class="textLogo">Sakai</a>
+              </li>
+            </ul>
+          </header>
+        </div><!-- /.navbar-header -->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="about.html" title="Learn more about what Sakai is and how it is managed" role="menuitem" >About Sakai</a>
+            </li>
+            <li class=" ">
+                <a href="https://sakai-duke.screenstepslive.com/s/sakai_support" title="Find answers to your Sakai questions or get help" role="menuitem">Help Center</a>
+            </li>
+          </ul>
+          <div class="system-status pull-right">
+            <p id="alert-wrapper" class="alert alert-wrapper">
+              <span id="alert-status"></span>
+            </p>
+          </div>
+        </div><!-- /.navbar-collapse -->
+        
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container margin-top">
+        <div class="col-md-8">
+            <div class="card">  
+                <div class="card-body">
+                    <h1 id="about" name="about">About Sakai</h1>
+                    <p>Sakai is a flexible, open-source collaboration and learning environment  
+                    that provides Duke faculty and instructors with tools to support teaching 
+                    and learning activities. <a href="http://sakaiproject.org/">Sakai</a> 
+                    is well established not only as a leading learning management system, but 
+                    also as an active open-source development community. Sakai provides a 
+                    platform for Duke to better integrate new and existing tools, as well 
+                    providing better support for Duke’s growing number of collaborations.</p>
+                    <h2>A few key aspects of Sakai:</h2>
+                    <ul>
+                        <li><strong>Flexibility</strong>: faculty can choose to create course 
+                            sites in ways that better suit their teaching style and needs. For 
+                            example, some faculty may choose to develop a syllabus and simply 
+                            link to course readings, resources and assignments. Other faculty 
+                            may choose to design their courses using Sakai’s calendar tool – providing 
+                            students with an easily accessible list of assignments and readings.</li>
+                        <li><strong>Sharing and user access</strong>: Sakai makes it easy to add 
+                            other students or outside guests to course sites – faculty can even 
+                            choose to make individual resources or sections of their course public 
+                            to share via a URL.</li>
+                        <li><strong>Home</strong>: In addition to course and project sites, 
+                            Sakai provides each user an independent space for storing and sharing 
+                            files and managing profiles. Add a file to your Home, and simply 
+                            link it to your course (or several courses). Students participating in 
+                            the Sakai pilot also found the calendar especially useful as it combines 
+                            assignments and other date-related information from all of a student’s 
+                            courses in one single calendar.</li>
+                    </ul>
+                    <p>Management and operation of the Duke Sakai learning management system is a 
+                        partnership between the Duke Learning Innovation, Duke Office of Information Technology, 
+                        Longsight and Duke community schools, departments and users.</p>
+                    <p>Between August 2009 and October 2010, Duke’s 
+                        <a title="eLearning Roadmap Group" 
+                        href="http://elearning.duke.edu/" target="_blank">eLearning Roadmap Group</a> 
+                        reviewed Duke’s eLearning needs and goals, and undertook a formal evaluation 
+                        of several prominent learning management systems including new versions of 
+                        Blackboard, Moodle, and Sakai. At the end of their review, the eLearning 
+                        Roadmap Group <a title="eLearning recommendation" 
+                        href="http://elearning.duke.edu/reports/#october-report">recommended</a> 
+                        that Duke move from Blackboard to Sakai. A small group of Duke faculty and 
+                        students participated in a <a title="Sakai Pilot site" 
+                        href="http://sites.duke.edu/sakaipilot/" target="_blank">pilot of Sakai</a> 
+                        (thanks to a collaboration with UNC) during Spring 2011 
+                        (<a href="https://sakai.duke.edu/access/content/public/gateway/Sakai%20Spring%202011%20Pilot%20Summary.pdf">download 
+                            the Pilot Report PDF</a>). Feedback and information gathered during 
+                            the pilot will guide the next steps of the migration process from 
+                            Blackboard to Sakai.</p>
+                    
+                    <hr />
+                    <h2 id="reports" name="reports">Reports</h2>
+                    
+                        <ul>
+                            <li><a href="https://learninginnovation.duke.edu/2016/elearning-technology/sakai/" title="2016 - 17 Annual Report">2016-17 Annual Report</a></li>
+                            <li><a href="https://learninginnovation.duke.edu/2015/elearning-technology/sakai/" title="2015 - 16 Annual Report">2015-16 Annual Report</a></li>
+                            <li><a href="https://learninginnovation.duke.edu/2014/elearning-technology/sakai/" title="2014 - 15 Annual Report">2014 -15 Annual Report</a></li>
+                            <li><a title="spring 2013 report" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/Sakai-Update-%C2%AD-Spring-2013.pdf">Sakai Update Spring 2013</a></li>
+                            <li><a title="June 2012" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_June-2012.pdf">Sakai Update June 2012</a></li>
+                            <li><a href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/ITAC_6212012.pdf">Final Sakai Transition report for ITAC</a></li>                
+                            <li><a title="Sakai Report - January 2012" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_Jan2012.pdf">Sakai Update January 2012</a></li>
+                            <li><a title="Sakai Report - February 2012" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_Feb2012.pdf">Sakai Update February 2012</a></li>
+                            <li><a href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/sakai-march-2012-update-2.pdf">Sakai Update March 2012</a></li>
+                            <li><a title="Fall 2011 Sakai survey results" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/Duke-Sakai-User-Survey-Report-Fall-2011.pdf">Fall 2011 Sakai Survey Results</a>
+                            <li><a title="Sakai Report - July 2011" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_July2011.pdf">Sakai Update July 2011</a></li>
+                            <li><a title="Sakai Report - September 2011" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_Sept2011.pdf">Sakai Update September 2011</a></li>
+                            <li><a title="Sakai Report Fall 2011 Summary" href="http://support.sakai.duke.edu/wp-content/uploads/2011/12/SakaiReport_Fall2011Summary.pdf">Fall 2011 Summary</a></li>
+                        </ul>
+                        
+                    <hr />
+                    <h2>Policies</h2>
+                    
+                    <h3 id="appropriateuse" name="appropriateuse">Duke Sakai Appropriate Use Policy</h3>
+                        <p>Sakai is open-source collaboration and learning environment intended to support the teaching, 
+                            learning and scholarship of Duke University faculty, staff and students. Duke University 
+                            faculty and staff may use Sakai for:</p>
+                        <ul>
+                            <li>courses they teach (including courses in which non-Duke students are enrolled)</li>
+                            <li>committees engaged in scholarly endeavors</li>
+                            <li>scholarly groups of which they are a member</li>
+                            <li>non-profit, educational community groups</li>
+                            <li>other uses as described in the terms and conditions for using and 
+                                creating Sakai project sites below</li>
+                        </ul>
+                
+                    <hr /><!-- END APPROPRIATE USE POLICY-->
+
+                    <h3 id="projectsiteterms">Terms and Conditions for Project sites</h3>
+                        <p>When you create a Sakai Project site, you’ll be asked to choose a primary use 
+                            for the site, and to agree to the Terms and Conditions of use. The options 
+                            and terms are as follows:</p>
+                        <h4>Primary use choices:</h4>
+                        <ul>
+                            <li>HR-related (for a search; promotion, tenure or reappointment 
+                                review, or similar)</li>
+                            <li>Academic resource for one or more formal courses</li>
+                            <li>Short-term team or working group activity (e.g. planning for a student 
+                                or staff conference event, short-term planning activity, etc.)</li>
+                            <li>Ongoing team or working group activity (e.g. as a work space for a 
+                                standing committee, student group, etc.)</li>
+                            <li>Test space to learn more about Sakai functionality</li>
+                            <li>Public space to share materials and engage participants beyond a 
+                                specific group</li>
+                            <li>Other</li>
+                        </ul>
+                        <p>By setting up a Sakai Project site, you are personally agreeing to 
+                            the following Terms and Conditions:</p>
+                        <ol>
+                            <li>I understand that use of Duke’s instance of Sakai requires 
+                                adherence to Duke’s acceptable use guidelines and that access 
+                                may be revoked for any participant (whether from Duke or from 
+                                outside of Duke) who does not follow these guidelines or the 
+                                Duke Sakai Terms and Conditions.</li>
+                            <li>I understand that as the project site administrator, I have sole 
+                                responsibility for informing participants in the project site 
+                                about the nature of its availability – i.e. whether it is generally 
+                                available, viewable by authorized users, etc. – and about any 
+                                changes I may make at a later time to its availability.</li>
+                            <li>I understand that use of Duke’s Sakai instance is subject to university 
+                                data retention policies, and that Sakai project sites may be removed 
+                                or archived by the university at a later time in accordance with 
+                                published, formal guidelines. Furthermore, I understand that Sakai 
+                                is not an archival repository and should not be used with the intent 
+                                of providing open-ended, long-term storage for project site contents.</li>
+                            <li>I understand that I will be responsible for providing support to any 
+                                third party, non-Duke participants in my Duke Sakai project site.</li>
+                            <li>I understand that these Terms and Conditions may be modified at a 
+                                future date in accordance with formal Duke Sakai governance procedures. 
+                                By clicking ‘Create Site’ you are indicating that you have read and 
+                                agree to the above Terms and Conditions.</li>
+                        </ol>
+                        
+                    <hr /> <!-- END PROJECT SITE TERMS-->
+                    
+                    <h3 id="access" name="access">Access to Duke Sakai</h3>
+                        <p>Access to Duke Sakai, materials and affiliated online tools will be granted as follows:</p>
+                        <ul>
+                            <li><strong>Duke faculty, students and staff:</strong> free to access Sakai using Duke NetID 
+                                credentials. Duke users may change their NetID passwords by going to 
+                                <a href="http://www.duke.edu/online">http://www.duke.edu/online</a>.</li>
+                            <li><strong>Duke affiliates:</strong> can access Sakai with sponsor-provided Duke NetID 
+                                credentials. Access to courses and/or project sites as provided by Duke faculty, staff 
+                                and/or student site owners.</li>
+                            <li><strong>Duke guests and non-Duke users:</strong> Non-Duke users must use a 
+                                provided/sponsored Duke NetID or Onelink <!--For more information, see Add Participants.--></li>
+                        </ul>
+                        <h4>User roles:</h4>
+                        <p>Available user roles include the following:</p>
+                        <ul>
+                            <li>Course sites: Student, Instructor, Teaching Assistant, Course Builder, and Visitor.</li>
+                            <li>Project sites: Maintain, Access, and Visitor.</li>
+                            <li>More details on <a title="User Roles" 
+                                href="http://sakai-duke.screenstepslive.com/s/sakai_support/m/77292/l/875583-what-are-permissions-and-roles">user roles</a></li>
+                        </ul>
+                        <h4>Visitors:</h4>
+                        <p>Sakai will allow an individual not enrolled in a particular course or project site as 
+                            Visitor to gain access to specific areas of course sites, not including course rosters, 
+                            user tools (e.g., user directory), or communication tools.</p>
+                        <h3>Student access and course enrollment:</h3>
+                        <p>Students who are registered for classes with a Sakai course site will be automatically 
+                            added to that course site when the site is created, or when registration data becomes 
+                            available to Sakai, whichever is later. Course sites are not available to students 
+                            when created, however, and making them available is at the discretion of the course 
+                            instructor. Instructors may provide full access to their course site(s) to currently 
+                            enrolled Duke students who are not yet registered for the course (for example, those 
+                            serving as TAs or auditing a course) by adding those students to the course site manually.</p>
+                        <p>As students add courses during the add/drop period, they will be automatically added to 
+                            the appropriate Sakai rosters, typically within 3-6 hours. Students who drop courses 
+                            will have their enrollment within the Sakai site disabled to prevent unauthorized access 
+                            to course materials. Through the end of the add/drop period at the beginning of the 
+                            semester, both the officially registered students and those on the Registrar’s wait list 
+                            are enrolled in the course site. At the end of the add/drop period, students still on the 
+                            wait list, but not officially registered for the course, will have their enrollments in 
+                            the Sakai course site disabled.</p>
+                        <h3>Length of access to course sites:</h3>
+                        <p>Student access to course materials is at the discretion of the course instructor(s) or 
+                            programs. Students wanting to retain access to provided course content should save such 
+                            content prior to the end of a course. Students should always retain personal and/or local 
+                            copies of their own work (assignments, papers, responses to discussions, etc) they submit 
+                            to systems such as Sakai. At the end of a given semester, instructors are encouraged to 
+                            make their course sites unavailable to students, in the reverse of the process they used 
+                            to make the courses available at the start of the semester.</p>
+                        <p>Students who graduate retain access to the Sakai system for as long as their NetID remains 
+                            active (currently 1 year after graduation). After this time, all of the former student’s 
+                            access to Sakai, as well as the student’s records within Sakai, will be automatically disabled. 
+                            Graduating students should plan to backup or copy any materials loaded to their personal My Workspace or 
+                            Sakai project sites they created prior to the end of the year after they graduate. Access to previous 
+                            course sites is at the discretion of the course instructor.</p>
+                        
+                    <hr /> <!-- END ACCESS TO DUKE SAKAI-->
+            
+                    
+                    <h3 id="communication" name="communication">Communications and Technical Administration of Sakai</h3>
+                        <h4>Standard maintenance window:</h4>
+                        <p>Routine maintenance and rolling restarts occur every Sunday between 1am-6am. During this time, 
+                            Sakai may still be accessible, but may exhibit some brief slowness or instability. Users 
+                            on the system should save frequently and refrain from taking high stakes tests or uploading 
+                            critical assignments during this time.</p>
+                        <h4>Planned outages:</h4>
+                        <p>Sakai planned outages will take place during the standing Sakai outage window (Sundays, 1:00 a.m. – 6:00 a.m. EST) 
+                            whenever possible. Planned outages will be announced at least one week in advance in most circumstances. 
+                            Outages will be announced in several places:</p> 
+                            <ul>
+                                <li>here, on the Sakai Index and About pages</li>
+                                <li>on the ‘Message of the Day’ module within Sakai (for logged-in users)</li>
+                                <li>on the OIT Service Updates page</li>
+                            </ul> 
+                        <h4>Unplanned/emergency outages:</h4>
+                        <p>Sakai unplanned or emergency outages will be posted on the places listed above (if possible).</p>
+                        <h4>System administrator access to Sakai sites:</h4>
+                        <p>Sakai system administrators may access Sakai sites to solve technical support tickets or 
+                            in response to help queries from faculty or staff, and may temporarily add a test account 
+                            (student or other role) to help troubleshoot. System administrators may access sites as part 
+                            of system testing and maintenance with no advance permission from instructors or project site 
+                            owners. System administrators will not extract data about system usage for faculty or students, 
+                            except when deemed necessary to troubleshoot a system problem. Any information or data discovered 
+                            about a course site or user during the course of system testing or investigations will not be 
+                            shared with any other faculty or user.</p>
+                        
+                    <hr /> <!-- END COMMUNICATIONS AND TECHNICAL ADMINISTRATION -->
+            
+                    <h3 id="management" name="management">Course Management</h3>
+                        <h4>Saving course materials (aka ‘archiving’ courses):</h4>
+                        <p>At the end of each semester, faculty should consider downloading any 
+                            <a title="Upload download resources" 
+                            href="http://support.sakai.duke.edu/2011/08/19/how-can-i-upload-multiple-files/">content created 
+                            or added in the Resources section</a> and <a title="Download grades" 
+                            href="http://support.sakai.duke.edu/2011/12/08/export-official-grades-from-sakai/">downloading a 
+                            copy of the course gradebook</a>, if used for quick reference in the event of a grade dispute. 
+                            These files should be retained by the faculty member, outside of the Sakai system, according 
+                            to the storage guidelines of their department.</p>
+                        <h4>Course size limitations:</h4>
+                        <p>At this time, there is no limitation on the size of individual course sites.</p>
+                        <h4>Transferring course sites:</h4>
+                        <p>Instructors who wish to use the course site developed by another instructor need to receive 
+                            written permission from the original instructor first, and forward that permission to Learning Innovation 
+                            (<a href="mailto:learninginnovation@duke.edu">learninginnovation@duke.edu</a>).</p>
+                        <h4>Creating a Sakai course site:</h4>
+                        <p>Sakai offers faculty and instructors the opportunity to create sites for any course they’re 
+                            teaching in a given semester. Faculty and instructors can also create course sites that combine 
+                            enrollments (or sections, if available). For example, you can create a lecture course site and 
+                            add all of the lab enrollments to the same site. Duke faculty, staff and students can also 
+                            create project sites.</p>
+                        <h4>Gradebook information:</h4>
+                        <p>The Sakai Gradebook is a tool designed for the convenience of students and faculty. Thus, it is not 
+                            an official record of student grades, nor should it be considered a legally binding record of student 
+                            scores. Faculty are strongly encouraged to periodically export/save a copy of the online Gradebook, 
+                            and to print a final copy for their records after the semester ends. In addition, faculty are 
+                            strongly encouraged to post student grades in Sakai only in the secure Sakai Gradebook or the 
+                            alternate Sakai Post ‘Em tool. Final grades are to be <a title="Export official grades Sakai" 
+                            href="http://support.sakai.duke.edu/2011/12/08/export-official-grades-from-sakai/">entered into 
+                            the student information system (PeopleSoft</a>) as the gradebook of record.</p>
+                    <hr /> <!-- END COURSE MANAGEMENT -->
+
+                    <h3 id="security" name="security">Information Security</h3>
+                        <p>The Sakai user database is fed directly from the Duke enterprise directory system, thus allowing 
+                            users to login with their Duke netID and password. The security of these accounts is crucial for 
+                            maintaining a reliable and trusted resource for online instructional materials and tools.</p>
+                        <h4>Controlling access to student information:</h4>
+                        <p>Duke University has an established <a href="https://security.duke.edu/policies/duke-services-and-data-classification" 
+                            target="_blank" rel="noopener noreferrer">Data Classification Standard</a>, which defines 
+                            Sensitive Data as including FERPA-protected student data. As with other Sensitive university 
+                            records, the privacy and security of student information (including but not limited to: grades, 
+                            test scores, usernames and ID numbers) must closely guarded. As noted in the gradebook information 
+                            section above, grades should not be posted so that students may see scores belonging to other 
+                            class members (for example, do not post grades in a spreadsheet uploaded to the course site).</p>
+                        <h4>Privacy settings:</h4>
+                        <p>Privacy settings for student identities from the enterprise directory are brought into Sakai. 
+                            Duke users wishing to change their privacy flags should do so in the enterprise directory.</p>
+
+                    <hr /><!-- END SECURITY -->
+
+                    <h3 id="copyright" name="copyright">Copyright and Fair Use</h3>
+                        <h4>Posting copyrighted materials:</h4>
+                        <p>Copyright law and <a title="fair use guidelines" 
+                            href="http://library.duke.edu/about/depts/scholcomm/copyright-and-fair-use.pdf" 
+                            target="_blank" rel="noopener noreferrer">Fair Use Guidelines</a> allow faculty to 
+                            provide access to copyrighted materials using the Sakai system, as long as the 
+                            guidelines are followed and copyrighted materials are accessible only to enrolled 
+                            members of the course. Instructors are advised to consider the use of Duke 
+                            Library’s e-reserves system to avoid infringement.</p>
+                        <h4>Linking to external sites from Sakai:</h4>
+                        <p>The Sakai software provides an easy-to-use interface for integrating links to 
+                            other websites into course materials. Instructors are encouraged to link to 
+                            other sites, rather than attempting to integrate the desired materials directly 
+                            into the Sakai course site. This alleviates copyright concerns and also retains 
+                            the integrity of the materials and associated links in their original environment. 
+                            It is the responsibility of the instructor to confirm that links from Sakai to 
+                            external sites are viable.</p>
+                        <h4>Linking to Sakai from external sites:</h4>
+                        <p>It is possible to link to a Sakai course site directly from websites external to 
+                            Sakai. Users may, however, be prompted to log in when they first attempt such access.</p>
+                    <hr /><!-- END COPYRIGHT FAIR USE -->
+            
+                    <h3 id="ip" name="ip">Intellectual Property</h3>
+                        <h4>System management data:</h4>
+                        <p>Information regarding Sakai system performance or usage is considered the property 
+                            of Duke University. Information regarding specific Sakai sites or individual 
+                            accounts will be held in confidence, although data may be gathered and presented 
+                            in aggregated form by university staff members (e.g., Learning Innovation, OIT, Library) for 
+                            professional development activities, such as conference presentations and 
+                            scholarly/industry publications, as well as for reporting on system performance 
+                            or use.</p>
+
+                    <hr /><!-- END INTELLECTUAL PROPTERY-->
+
+            
+                    <h3 id="computing" name="computing">Computing Policies</h3>
+                        <p>Use of Sakai sites, by both students and faculty, are governed by the Office of 
+                            Information Technology’s Computer Policies and Guidelines, which include:</p>
+                        <ul>
+                            <li>Computing and Networking: Acceptable Use — appropriately access only the 
+                                information for which you are authorized</li>
+                            <li>Group E-Mail Policy — the Sakai e-mail tool(s) should be used only for 
+                                course-related communication</li>
+                        </ul>
+
+                    <hr /><!-- END COMPUTING -->
+
+                    <h3 id="retention" name="retention">Sakai Course Site Retention Policy</h3>
+                        <h4>Purpose of Policy</h4>
+                        <p>This policy defines how long a course site will be retained in the centrally-managed 
+                            Sakai Learning Management system before it is deleted. It also describes ways 
+                            instructors can obtain a copy of the contents of a Sakai site before it is 
+                            deleted. The older a Sakai course site is, the less likely it is to function 
+                            properly in the Sakai system, particularly as upgrades are applied to the Sakai software.</p>
+                        <h4>Policy Summary</h4>
+                        <p>Sakai course sites will be retained for five years and then deleted. Site deletion 
+                            will occur annually on or around October 9 and site owner will be notified in May 
+                            and August if they have sites that are slated for deletion.</p>
+                        <h4>Assumptions</h4>
+                        <ol>
+                            <li>The primary purpose of Sakai is to provide a method for delivering content and tools 
+                                    that are used to enhance the teaching and learning environment for a class 
+                                    during a given academic period.</li>
+                            <li>A convenience of Sakai is the ability to copy materials from older course 
+                                    sites to newer course sites.</li>
+                            <li>Sakai is not the archival record of a course. There are other university systems 
+                                    which serve as the archival record of course enrollments, grades, etc.</li>
+                        </ol>
+                        
+                        <h4>Guiding Principles</h4>
+                        <ol>
+                            <li>To comply with any University policies related to course material retention.</li>
+                            <li>To retain centrally-stored Sakai course sites and materials for a period of time 
+                                that is helpful to instructors and students.</li>
+                            <li>To guide instructors in developing their own procedures for long-term storage of 
+                                their Sakai materials.</li>
+                            <li>To optimize the performance of the Sakai system.</li>
+                            <li>To ensure that online storage space provided for Sakai is used efficiently and to 
+                                minimize the financial and technical impact of constantly increasing disk use.</li>
+                        </ol>
+                        <h4>What Gets Deleted from a Sakai Course Site?</h4>
+                        <p>Deleting a Sakai course site permanently removes it from the Sakai system so that it is 
+                            no longer accessible. When a Sakai course site is deleted it is automatically removed 
+                            from a user’s sites list.</p>
+                        <p>All materials stored in the Sakai course site are deleted. This includes all files, 
+                            grades, assignments, quizzes, surveys, links and anything else associated with the 
+                            course site that is stored in the Sakai database and file system areas.</p>
+                        <p>Content stored outside of Sakai and linked from within the Sakai course web site is not 
+                            deleted. Rather, the links are deleted, because that is what is stored in the Sakai database. 
+                            The retention of materials outside of the Sakai system is subject to the terms and 
+                            conditions of those other systems, whether they are departmental servers and systems, 
+                            OIT centrally-supported systems, or non-Duke external systems.</p>
+                        <h4>How Do I Retain a Copy of the Content Before the Course is Deleted?</h4>
+                        <p>Instructors may download materials stored in Resources (individually, through compressed 
+                            zip files, or WebDAV), export Tests&Quizzes question banks, and export Gradebooks as 
+                            necessary. Other tools (such as the Forums tool) may also offer alternate methods 
+                            such as printing.</p>
+                        <p>Instructors can use materials from older courses in newer courses by reusing or importing 
+                            material from the older sites to newer sites.  You may also choose to export the content 
+                            from your Sakai course to your computer.</p>
+                        <h4>Scope of Policy</h4>
+                        <p>This policy covers course sites and materials stored the Sakai collaborative learning 
+                            environment for course sites.  This policy does not cover materials stored in an individual’s 
+                            home directory, personal Web space, centrally-supported OIT services, school-based media 
+                            servers or departmental/school-based file storage space.</p>
+                        <h4>Review of Policy</h4>
+                        <p>This policy has been reviewed by the Learning Innovation Director, Senior Administrators, ITAC, 
+                            and LearnTAC. The policy may be reviewed and changed as needed.</p>
+                        <h4>Issues to be Further Considered</h4>
+                        <p>Content stored in other campus tools can often be linked from within Sakai. These other tools 
+                            may have their own retention policies. Therefore the ability to access these materials is 
+                            independent of the Sakai system.</p>
+                        <p>Older courses may not function properly as we upgrade to newer versions of Sakai.</p>
+                        <p>Periodic updates of Sakai are required to keep Duke’s Sakai system current with the rest Sakai 
+                            community and typically include new and enhanced features that are of value to instructors and students.</p>
+                        
+                    <hr /> <!-- END RETENTION -->
+                
+                    <h3 id="accessibility" name="accessibility">Sakai Accessibility</h3>
+                        <p>Sakai CLE is an open-source, community-developed system. According to the 
+                            <a title="Sakai Foundation Accessibility" href="http://www.sakaiproject.org/accessibility" 
+                            target="_blank" rel="noopener noreferrer">Sakai Foundation</a>:</p>
+                        <blockquote>Our goal is to meet all of the W3C Web Content Accessibility Guidelines (WCAG) 2.0 
+                            Level A and AA Success Criteria and to use emerging standards and best practice design 
+                            techniques (such as the WAI-ARIA Suite) that support existing and emerging adaptive technologies.</blockquote>
+                        <p>Even though Sakai core tools may be fully accessible and compliant, instructors should be 
+                            aware that many add-ons, integrated tools, and even their own content (videos, PowerPoints, etc) 
+                            might not be immediately compliant and may require special attention. Students and instructors 
+                            should contact <a title="Duke Disability Management System" href="http://www.access.duke.edu/" 
+                            target="_blank" rel="noopener noreferrer">Duke Disability Management System</a> for more information 
+                            and assistance, including information on assistive technologies and equipment.</p>
+                        <p>For those interested in learning more about Sakai (and tool-specific accessibility), see the 
+                            following Sakai community resources.</p>
+                        <ul>
+                            <li><a title="Sakai accessibility documentation" href="https://confluence.sakaiproject.org/display/2ACC/Sakai+2.9+Accessibility+Documentation+English" target="_blank" rel="noopener noreferrer">Sakai 2.9 (current version) accessibility documentation</a></li>
+                            <li><a title="Sakai current accessibility reports" href="https://confluence.sakaiproject.org/display/2ACC/Sakai+CLE+Current+Accessibility" target="_blank" rel="noopener noreferrer">Sakai current accessibility reports</a></li>
+                            <li>Sakai community <a title="Sakai accessibility working groups" href="https://confluence.sakaiproject.org/display/2ACC/Accessibility+Working+Group" target="_blank" rel="noopener noreferrer">Accessibility Working Group</a> pages (The Sakai Accessibility Working Group (WG) is responsible for ensuring that the Sakai framework and its tools are accessible to persons with disabilities)</li>
+                        </ul>
+                    
+                    <hr /><!-- END ACCESSIBILITY-->
+
+                    <h3 id="contentrecovery" name="contentrecovery">Data Backup and Recovery</h3>
+                    <p>The Sakai service is backed up nightly and backups are kept for 30 days, 
+                    after which they are deleted. During this 30 day window, Sakai content can be 
+                    restored from a backup for $175 per hour with a 2 hour minimum. For each tool 
+                    that requires restoration, 1-2 hours of work is required. </p>
+                    <p>After 30 days, the database backups expire and content can no longer be restored. </p>
+                    <p>The restoration process takes 2-4 days to complete as outlined below.</p>
+                    <ol>
+                        <li>Faculty, Department, or School makes Learning Innovation aware that content needs to be restored.</li>
+                        <li>Learning Innovation provides an estimate for the retrieval.</li>
+                        <li>School or Department decides whether to cover the cost of the retrieval and provides 
+                            a fund code for Learning Innovation to bill the cost to.</li>
+                        <li>If cost is covered, restoration is completed.</li>
+                    </ol>
+                    <p>If you need the content sooner than 2-4 days, we recommend rebuilding the content manually.</p>
+                    <!-- END CONTENT RECOVERY -->
+                </div><!-- /.card-body-->
+            </div><!-- /.card-->
+        </div><!-- /.col-md-8-->
+        <div class="col-md-4 sidebar">
+            <div class="card">
+                <h2 class="card-header">Page Contents</h2>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="#about">About Sakai</a></li>
+                        <li><a href="#reports">Reports</a></li>
+                        <li><a href="#appropriateuse">Duke Sakai Appropriate Use</a></li>
+                        <li><a href="#projectsiteterms">Terms and Conditions for Project sites</a></li>
+                        <li><a href="#access">Access to Duke Sakai</a></li>
+                        <li><a href="#communication">Communications and Technical Administration of Sakai</a></li>
+                        <li><a href="#management">Course Management</a></li>
+                        <li><a href="#security">Information Security</a></li>
+                        <li><a href="#copyright">Copyright and Fair Use</a></li>
+                        <li><a href="#ip">Intellectual Property</a></li>
+                        <li><a href="#computing">Computing Policies</a></li>
+                        <li><a href="#retention">Sakai Course Site Retention</a></li>
+                        <li><a href="#accessibility">Sakai Accessibility</a></li>
+                        <li><a href="#contentrecovery">Data Backup and Recovery</a></li>
+
+                    </ul>
+                        
+                </div><!-- /.card-body-->
+            </div><!-- /.card-->
+        </div><!-- /.col-md-4-->
+    </div><!-- /.container-->
+    
+    <!-- Duke footer comes in via javascript-->
+    <footer id="colophon" role="contentinfo"></footer><!-- #colophon -->
+    
+    
+
+    <script type="text/javascript">
+    $(document).ready(function (){
+
+      // api feed
+      let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+      $.ajaxSetup({ cache: false });
+      $.getJSON(sakaiAPI, function(data){
+
+        // loop through array
+        $.each(data, function(index, i){
+
+          var alertTerm = 'sakai'; // look for 'sakai' in title
+        
+          
+          if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
+            
+            if (i.status.toLowerCase() == "scheduled") {
+              let shortlink = i.shortlink;
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
+              document.getElementById("alert-wrapper").className = "alert alert-warning";
+            }
+            // check the status - we don't want to show resolved
+            else if (i.status.toLowerCase() != "resolved") {
+              let shortlink = i.shortlink;
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
+              document.getElementById("alert-wrapper").className = "alert alert-danger";
+            }
+
+            // all is well message
+            else {
+              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
+              document.getElementById("alert-wrapper").className = "alert alert-success";
+            }
+
+            // break the each loop - we just need the first result
+            return false;
+          }
+
+          // default message
+          else {
+            // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+            document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
+            document.getElementById("alert-wrapper").className = "alert alert-success";
+          }
+        });
+      });
+    });
+
+    </script>
+
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-67434859-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script type="text/javascript" src="/library/webjars/ckeditor/4.9.1/full/ckeditor.js?version="></script>
+    <script type="text/javascript" src="/library/editor/ckeditor.launch.js?version="></script>
+    <script type="text/javascript" src="/portal/scripts/sessionstoragemanager.js?version="></script>        
+    <script type="text/javascript" src="/library/templates.js?version="></script>
+    <script type="text/javascript" src="/library/js/trimpath-template-latest.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/jquery.clearsearch.js?version="></script>
+    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.plugins.min.js?version="></script>
+    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.scripts.min.js?version="></script>
+    <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version="></script>
+	  <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.buttons.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/qtip/tutorial.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/cropper/2.3.2/dist/cropper.min.js?version="></script>
+    <!--[if lt IE 9]>
+    <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
+    <![endif]-->
+    <script type="text/javascript" src="/library/js/caps-lock-checker.js?version="></script>
+    <script type="text/javascript" src="/library/warpwire.js"></script>
+    <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
+    
+  </body>
+</html>

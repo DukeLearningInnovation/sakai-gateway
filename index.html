@@ -7,35 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Duke University">
     <link rel="icon" href="/favicon.ico">
 
     <title>Welcome to Duke Sakai</title>
-
+    
     <!--[if (lt IE 9)]>
       <link href="/library/skin/duke-default/tool-ie.css?version=" rel="stylesheet">
     <![endif]-->
 
-    <link href="/library/skin/duke-default/tool.css" rel="stylesheet">
-    <link href="/library/skin/duke-default/tool.css?version=" rel="stylesheet" media="screen, tty, tv, handheld, projection">
-    <link href="/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
+    <link type="text/css" href="/library/skin/duke-default/tool.css" rel="stylesheet" media="screen, tty, tv, handheld, projection">
+    <link type="text/css" href="https://brandbar.oit.duke.edu/footer_new/css/footer.css" rel="stylesheet" >
+    
+    <script type="text/javascript" src="/library/skin/duke-default/js/lib/modernizr.js?version="></script>
+    <script type="text/javascript" src="/library/js/headscripts.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version="></script>
 
-    <link href="/library/webjars/jquery-ui/1.11.3/jquery-ui.min.css?version=" rel="stylesheet" />
-    <link href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
-    <link href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
-    <link href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
-    <link rel="stylesheet" href="https://brandbar.oit.duke.edu/footer_new/css/footer.css" type="text/css">
-    <script src="/library/skin/duke-default/js/lib/modernizr.js?version="></script>
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 
-      <style type="text/css">
+   
 
+    <style type="text/css">
+        body {
+          background: #fafafa;
+          color:#444;
+        }
         .Mrphs-topHeader {
           font-size:1em;
         }
@@ -46,6 +45,8 @@
           border-radius: 0;
           margin-bottom:0;
         }
+        
+        
         .navbar-default .navbar-toggle {
           border-color:#fff;
         }
@@ -66,12 +67,7 @@
           color: #363636;
           background-color: #ffe89e;
         }
-        @media (max-width: 767px) {
-          .navbar-nav .open .dropdown-menu {
-            color: #363636;
-            background-color: #ffe89e;
-          }
-        }
+        
         .navbar-default .navbar-nav>li>.logo:hover,
         .navbar-default .navbar-nav>li>.logo:focus{
           background: transparent;
@@ -93,6 +89,10 @@
         .navbar .logo{
           padding: 5px 15px 0 0;
         }
+        .navbar-logo img {
+          width:83px;
+          height:auto;
+        }
         .navbar-default .navbar-nav>li>.textLogo {
           color:#ffe89e;
           border-left: 1px solid #ffe89e;
@@ -100,76 +100,96 @@
           text-transform: uppercase;
           letter-spacing: .1em;
         }
+        .system-status {
+          height: auto;
+          width: 100%;
+        }
+        .system-status .alert {
+          margin: 5px 0;
+          border-radius: 2px;
+          padding:9px 15px;
+          line-height: 20px;
+        }
         .jumbotron {
-          background: url('/library/skin/duke-default/images/banner.jpg') no-repeat right center fixed #fff;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
+          background: #fafafa;
+          margin-top:50px;
+          margin-bottom:0;
+          
         }
         .jumbotron h1 {
-          color:#0736A4;
+          color:#00529b;
         }
         .jumbotron p {
           font-size:16px;
         }
-        .container-transparent {
-          background-color:rgba(230,235,246,.8);
+        .card {
+          background-color:#fff;
+          border-radius: 2px;
+          margin-bottom:30px;
+          box-shadow: 0 1px 2px rgba(0,0,0,.1);
+
+        }
+        .jumbotron .card {
+          margin-bottom: 0;
+        }
+        .card.alert {
+          padding:0;
+        }
+        .card.alert-info {
+          background:#d9edf7;
+        }
+        .card.alert-warning {
+          background:#fcf8e3;
+        }
+        .card.alert-danger {
+          background:#f2dede;
+        }
+        .card .card-header {
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          padding:0 15px;
+          line-height: 2;
+          margin:0;
+          font-weight: 400;
+          /* background:#eee; */
+          
+        }
+        .card .card-body {
+          padding:15px;
         }
         a[href].btn-primary {
-          color: #363636 !important;
-          background-color: #ffe89e;
-          font-size: 21px;
-          border:none;
-          border-bottom: 5px solid #ffd960;
-          margin-top:0;
+          font-size:1.4em;
         }
          a[href].btn-primary:hover {
-          background: #ffd960;
+          
         }
-        .alert-success {
-          border-color: #b7caa7;
+        
+        #colophon {
+          margin-top:30px;
         }
-        .alert-danger {
-          border-color: #caa7ac;
+        @media (min-width: 768px) {
+          .jumbotron {
+            padding-bottom:30px;
+          }
+          .system-status {
+            width: 250px;
+          }
         }
-        .alert-success h2 {
-          color: #3c763d;
-        }
-        .alert-danger p a, .alert-danger p a:hover {
-          color: #3c763d;
-          text-decoration: none;
-        }
-        .alert-danger p a:hover {
-          color: #3c763d;
-          text-decoration: underline;
-        }
-        .alert-danger h2 {
-          color: #a94442;
-        }
-        .alert-danger p a, .alert-danger p a:hover {
-          color: #a94442;
-          text-decoration: none;
-        }
-        .alert-danger p a:hover {
-          text-decoration: underline;
-        }
-        .alert p {
-          font-size: 15px;
-        }
-        .alert p br {
-          display: block;
-          content: "";
-          margin-top: .5em;
-        }
+    </style>
 
-      </style>
-
+    <link type="text/css" href="/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
+    <link type="text/css" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css?version=" rel="stylesheet" />  
+    <link type="text/css" href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=" rel="stylesheet">
   </head>
 
   <body class="dukeSakaiGateway">
-    <nav class="navbar navbar-default ">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
+        
+      <div class="row-header">
         <div class="navbar-header ">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -180,10 +200,10 @@
           <header role="banner" class="navbar-brand Mrphs-headerLogo">
             <ul class="nav navbar-nav navbar-logo">
               <li class="">
-                <a href="http://www.duke.edu" class="logo"><img src="/library/skin/duke-default/images/dukeLogo.png" alt="Duke University Logo" /></a>
+                <a href="http://www.duke.edu" class="logo"><img src="/library/skin/duke-default/images/dukeLogo@2x.png" alt="Duke University Logo" /></a>
               </li>
               <li>
-                <a href="" class="textLogo">Sakai</a>
+                <a href="/" class="textLogo">Sakai</a>
               </li>
             </ul>
           </header>
@@ -191,100 +211,72 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="Mrphs-sitesNav__menuitem ">
-              <a href="https://support.sakai.duke.edu/about/" title="About" role="menuitem" >About Sakai</a>
+            <li class=" ">
+              <a href="about.html" title="Learn more about what Sakai is and how it is managed" role="menuitem" >About Sakai</a>
             </li>
-            <li class="dropdown Mrphs-sitesNav__menuitem ">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Started <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a class="" href="https://support.sakai.duke.edu/sakai-basics/quick-start-guides/">View quick start guides</a></li>
-                <li><a class="" href="https://cit.duke.edu/events/sakai-workshops/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_workshops">Sign up for a workshop</a></li>
-                <li><a class="" href="https://cit.duke.edu/events/open-office-hours/?utm_source=sakai&utm_medium=referral&utm_campaign=sakai_officehours">Stop by CIT Office Hours</a></li>
-                <li><a href="https://support.sakai.duke.edu/sakai-basics/examples/">See examples</a></li>
-              </ul>
-            </li><!-- /.dropdown -->
-            <li class="Mrphs-sitesNav__menuitem ">
-              <a href="https://support.sakai.duke.edu/sakai-basics/examples/" title="About" role="menuitem" >Examples</a>
-            </li>
-            <li class="Mrphs-sitesNav__menuitem ">
-              <a href="https://support.sakai.duke.edu/sakai-training-and-support/" title="Get Help" role="menuitem" >Get Help</a>
+            <li class=" ">
+                <a href="https://sakai-duke.screenstepslive.com/s/sakai_support" title="Find answers to your Sakai questions or get help" role="menuitem">Help Center</a>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="Mrphs-sitesNav__menuitem active">
-              <a href="/portal/login" title="Top FAQs" role="menuitem" >
-                <i class="fa fa-sign-in"></i>
-                <span class="">Login to Sakai</span>
-              </a>
-            </li>
-          </ul>
+          <div class="system-status pull-right">
+            <p id="alert-wrapper" class="alert alert-wrapper">
+              <span id="alert-status"></span>
+            </p>
+          </div>
         </div><!-- /.navbar-collapse -->
+        
       </div><!-- /.container-fluid -->
     </nav>
 
     <div class="jumbotron">
-      <div class="container container-transparent">
-        <div class="row">
-          <div class="col-md-12">
+      <div class="container ">
+        <div class="card">
+          <div class="card-body">
             <h1>Welcome to Sakai</h1>
-          </div>
+            <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning.</p>    
+            <a href="/portal/login" class="btn-primary">
+              <i class="fa fa-sign-in"></i>
+              <span class="">Login to Sakai</span>
+            </a>
         </div>
-        <div class="row">
-          <div class="col-md-8">
-            <p>Sakai is a flexible, open-source collaboration and learning environment that provides Duke faculty and instructors with tools to support teaching and learning.</p>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="/portal/login" class="btn-primary">
-                  <i class="fa fa-sign-in"></i>
-                  <span class="">Login to Sakai</span>
-                </a>
-              </div>
-            </div>
-          </div><!-- /.col-md-8 for info -->
-          <div class="col-md-4 ">
-            <div class="alert alert-info">
-              <h4>Changes to Sakai Login</h4>
-              <p>As of July 5, 2017 faculty and staff must use <a href="https://oit.duke.edu/what-we-do/applications/multi-factor-authentication">multi-factor authentication</a> to log into Sakai when off Duke's network.</p>
-            </div>
-            <div id="alert-wrapper">
-              <div id="alert-title"></div>
-              <div id="alert-status"></div>
-            </div>
-          </div><!-- /.col-md-4 for alerts -->
-        </div><!-- /.row -->
-      </div><!-- /.container-transparent for background image-->
+      </div><!-- /.card -->
+      </div>
     </div><!-- /.jumbotron -->
-    <hr />
-    <div class="container">
+    
+    <div class="container ">
       <div class="row">
         <div class="col-md-6">
-          <h4>We love to hear your feedback on Sakai.</h4>
-          <iframe src="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey" frameborder="0" align='center' height="580" width="100%" ></iframe>
+          <div class="card">
+            <h2 class="card-header"><i class="fa fa-commenting-o" aria-hidden="true"></i> We love to hear your feedback on Sakai.</h2>
+            <div class="card-body">
+              <iframe  src="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey"
+                    frameborder="0" align='center' height="560" width="100%" ></iframe>
+            </div>
+          </div>
         </div><!-- /.col-md-6 for Feedback Survey -->
         <div class="col-md-6">
-          <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/V2en8CwkgVw?rel=0" frameborder="0" allowfullscreen></iframe> </p>
-          <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/PZfIuHiRWko?rel=0" frameborder="0" allowfullscreen></iframe></p>
-          <p class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/Do47tdqF1wg?rel=0" frameborder="0" allowfullscreen></iframe> </p>
-        </div><!-- /.col-md-6 for videos -->
+          <div class="alert alert-info card">
+            <h2 class="card-header"><i class="fa fa-book" aria-hidden="true"></i> Sakai Student and Faculty Guides</h2>
+            <p class="card-body">Quickly get up to speed with the <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/71158">Student Guide</a> or <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/71692">Faculty Guide</a>. Great if you're new to Sakai or haven't used it in a while.</p>
+          </div>
+            <div class="alert alert-info card">
+              <h2 class="card-header"><i class="fa fa-wrench" aria-hidden="true"></i> Sakai 12 Release Notes</h2>
+              <p class="card-body">On May 12, 2018, Duke Sakai was upgraded to version 12. <a href="https://confluence.sakaiproject.org/display/DOC/Sakai+12+Release+Notes">Release notes</a> are available for anyone to view.</p>
+            </div>
+            
+        </div> <!--/.col-md-6 -->
       </div><!-- /.row -->
     </div><!-- /.container -->
 
     <footer id="colophon" role="contentinfo"></footer><!-- #colophon -->
+    
+    
 
-    <script src="/library/webjars/jquery/1.11.3/jquery.min.js?version="></script>
-    <script src="/library/webjars/jquery-migrate/1.4.0/jquery-migrate.min.js?version="></script>
-    <script src="/library/webjars/bootstrap/3.3.6/js/bootstrap.min.js?version="></script>
-    <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
-    <!--[if lt IE 9]>
-      <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
-    <![endif]-->
-
-    <script src="js/anchorme.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function (){
 
       // api feed
-      var sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+      let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
       $.ajaxSetup({ cache: false });
       $.getJSON(sakaiAPI, function(data){
 
@@ -292,51 +284,46 @@
         $.each(data, function(index, i){
 
           var alertTerm = 'sakai'; // look for 'sakai' in title
-
+        
+          
           if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
-
-            //console.log(i.name);
-            //console.log(i.status);
-            //console.log(i.incident_updates[0].status);
-            //console.log(i.incident_updates[0].body);
-
+            
+            if (i.status.toLowerCase() == "scheduled") {
+              let shortlink = i.shortlink;
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
+              document.getElementById("alert-wrapper").className = "alert alert-warning";
+            }
             // check the status - we don't want to show resolved
-            if (i.status.toLowerCase() != "resolved") {
-              document.getElementById('alert-title').innerHTML = '<h4>' + i.name + '</h4>';
-              var alertContent = i.incident_updates[0].body.replace(/(?:\r\n|\r|\n)/g, '<br />') // replace linebreaks
-              alertContent = anchorme.js(alertContent); // link up URLs
-              document.getElementById('alert-status').innerHTML = '<p>' + alertContent + '</p>';
+            else if (i.status.toLowerCase() != "resolved") {
+              let shortlink = i.shortlink;
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
               document.getElementById("alert-wrapper").className = "alert alert-danger";
             }
 
             // all is well message
             else {
-              document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-              document.getElementById('alert-status').innerHTML = "<p>All systems operational.</p>";
+              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
               document.getElementById("alert-wrapper").className = "alert alert-success";
             }
 
             // break the each loop - we just need the first result
             return false;
-
           }
 
           // default message
           else {
-            document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-            document.getElementById('alert-status').innerHTML = "<p>All systems operational</p>";
+            // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+            document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
             document.getElementById("alert-wrapper").className = "alert alert-success";
           }
-
-
-
         });
       });
     });
 
     </script>
 
-    <script>
+    <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -344,11 +331,28 @@
       ga('create', 'UA-67434859-1', 'auto');
       ga('send', 'pageview');
     </script>
-    <script src="/library/js/trimpath-template-latest.js?version="></script>
-    <script src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
-    <script src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
-    <script src="/library/webjars/pnotify/2.1.0/pnotify.core.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
-    <script src="/library/js/jquery/qtip/tutorial.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/ckeditor/4.9.1/full/ckeditor.js?version="></script>
+    <script type="text/javascript" src="/library/editor/ckeditor.launch.js?version="></script>
+    <script type="text/javascript" src="/portal/scripts/sessionstoragemanager.js?version="></script>        
+    <script type="text/javascript" src="/library/templates.js?version="></script>
+    <script type="text/javascript" src="/library/js/trimpath-template-latest.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/jquery.clearsearch.js?version="></script>
+    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.plugins.min.js?version="></script>
+    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.scripts.min.js?version="></script>
+    <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version="></script>
+	  <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.buttons.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
+    <script type="text/javascript" src="/library/js/jquery/qtip/tutorial.js?version="></script>
+    <script type="text/javascript" src="/library/webjars/cropper/2.3.2/dist/cropper.min.js?version="></script>
+    <!--[if lt IE 9]>
+    <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
+    <![endif]-->
+    <script type="text/javascript" src="/library/js/caps-lock-checker.js?version="></script>
+    <script type="text/javascript" src="/library/warpwire.js"></script>
+    <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
+    <script type="text/javascript" src="js/anchorme.min.js"></script>
+    
   </body>
 </html>
