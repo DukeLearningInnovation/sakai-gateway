@@ -1,8 +1,5 @@
 # sakai-gateway
 
-To dev, have MAMP or other web server installed and use the Switcheroo Redirector Chrome plugin to redirect
+`docker run --name sakai-gateway -p 8080:80 -v ~/dev/dukelearninginnovation/sakai-gateway:/usr/share/nginx/html:ro --rm nginx`
 
-FROM www.local.dev/library/js/ TO sakai.duke.edu/library/js/
-FROM www.local.dev/library/webjars/ TO sakai.duke.edu/library/webjars/
-
-Have /library/skin/duke-default in your webroot
+Copy as many CSS and JS files from the server to local library folder if you want to remove 404 errors during dev.
