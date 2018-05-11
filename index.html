@@ -13,16 +13,14 @@
     <title>Welcome to Duke Sakai</title>
     
     <!--[if (lt IE 9)]>
-      <link href="/library/skin/duke-default/tool-ie.css?version=" rel="stylesheet">
+      <link href="/library/skin/duke-default/tool-ie.css?version=ad" rel="stylesheet">
     <![endif]-->
 
     <link type="text/css" href="/library/skin/duke-default/tool.css" rel="stylesheet" media="screen, tty, tv, handheld, projection">
     <link type="text/css" href="https://brandbar.oit.duke.edu/footer_new/css/footer.css" rel="stylesheet" >
     
-    <script type="text/javascript" src="/library/skin/duke-default/js/lib/modernizr.js?version="></script>
-    <script type="text/javascript" src="/library/js/headscripts.js?version="></script>
-    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version="></script>
-    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version="></script>
+    <script type="text/javascript" src="/library/skin/duke-default/js/lib/modernizr.js?version=ad"></script>
+    
 
     <!--[if lt IE 9]>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
@@ -44,6 +42,7 @@
           border:none;
           border-radius: 0;
           margin-bottom:0;
+          box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
         }
         
         
@@ -110,9 +109,11 @@
           padding:9px 15px;
           line-height: 20px;
         }
+        .margin-top {
+          margin-top:50px;
+        }
         .jumbotron {
           background: #fafafa;
-          margin-top:50px;
           margin-bottom:0;
           
         }
@@ -134,6 +135,10 @@
         }
         .card.alert {
           padding:0;
+        }
+        .card.alert-success{
+          background:#eef6ee;
+          color:#006e01;
         }
         .card.alert-info {
           background:#d9edf7;
@@ -174,15 +179,77 @@
             width: 250px;
           }
         }
+        @media (min-width: 992px) {
+          .container {
+              width: 750px;
+          }
+        }
+        @media (min-width: 1200px) {
+          .container {
+              width: 750px;
+          }
+        }
     </style>
 
-    <link type="text/css" href="/library/skin/duke-default/print.css?version=" rel="stylesheet" media="print">
-    <link type="text/css" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css?version=" rel="stylesheet" />  
-    <link type="text/css" href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=" rel="stylesheet">
-    <link type="text/css" href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=" rel="stylesheet">
-    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=" rel="stylesheet">
-    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=" rel="stylesheet">
-    <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=" rel="stylesheet">
+    <link type="text/css" href="/library/skin/duke-default/print.css?version=ad" rel="stylesheet" media="print">
+    <link type="text/css" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css?version=ad" rel="stylesheet" />  
+    <link type="text/css" href="/library/js/jquery/cluetip/1.2.10/css/jquery.cluetip.css?version=ad" rel="stylesheet">
+    <link type="text/css" href="/library/js/jquery/qtip/jquery.qtip-latest.min.css?version=ad" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=ad" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=ad" rel="stylesheet">
+    <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=ad" rel="stylesheet">
+    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
+    <script type="text/javascript">
+      $(document).ready(function (){
+  
+        // api feed
+        let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+        $.ajaxSetup({ cache: false });
+        $.getJSON(sakaiAPI, function(data){
+  
+          // loop through array
+          $.each(data, function(index, i){
+  
+            var alertTerm = 'sakai'; // look for 'sakai' in title
+          
+            
+            if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
+              
+              if (i.status.toLowerCase() == "scheduled") {
+                let shortlink = i.shortlink;
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
+                document.getElementById("alert-wrapper").className = "alert alert-warning";
+              }
+              // check the status - we don't want to show resolved
+              else if (i.status.toLowerCase() != "resolved") {
+                let shortlink = i.shortlink;
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
+                document.getElementById("alert-wrapper").className = "alert alert-danger";
+              }
+  
+              // all is well message
+              else {
+                // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
+                document.getElementById("alert-wrapper").className = "alert alert-success";
+              }
+  
+              // break the each loop - we just need the first result
+              return false;
+            }
+  
+            // default message
+            else {
+              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
+              document.getElementById("alert-wrapper").className = "alert alert-success";
+            }
+          });
+        });
+      });
+  
+      </script>
+    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
   </head>
 
   <body class="dukeSakaiGateway">
@@ -228,7 +295,7 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="jumbotron">
+    <div class="jumbotron margin-top">
       <div class="container ">
         <div class="card">
           <div class="card-body">
@@ -245,16 +312,15 @@
     
     <div class="container ">
       <div class="row">
-        <div class="col-md-6">
-          <div class="card">
+        <div class="col-md-12">
+          <div class="alert alert-success card">
             <h2 class="card-header"><i class="fa fa-commenting-o" aria-hidden="true"></i> We love to hear your feedback on Sakai.</h2>
-            <div class="card-body">
-              <iframe  src="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey"
-                    frameborder="0" align='center' height="560" width="100%" ></iframe>
-            </div>
+            <p class="card-body">Take 5 seconds and answer our 
+              <a href="https://duke.qualtrics.com/SE/?SID=SV_1G1zYr0E8FiphBj" name="Sakai Open Feedback Survey">1 question survey.</a>
+            </p>
           </div>
         </div><!-- /.col-md-6 for Feedback Survey -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="alert alert-info card">
             <h2 class="card-header"><i class="fa fa-book" aria-hidden="true"></i> Sakai Student and Faculty Guides</h2>
             <p class="card-body">Quickly get up to speed with the <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/71158">Student Guide</a> or <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/71692">Faculty Guide</a>. Great if you're new to Sakai or haven't used it in a while.</p>
@@ -269,59 +335,10 @@
     </div><!-- /.container -->
 
     <footer id="colophon" role="contentinfo"></footer><!-- #colophon -->
+    <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
     
+
     
-
-    <script type="text/javascript">
-    $(document).ready(function (){
-
-      // api feed
-      let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
-      $.ajaxSetup({ cache: false });
-      $.getJSON(sakaiAPI, function(data){
-
-        // loop through array
-        $.each(data, function(index, i){
-
-          var alertTerm = 'sakai'; // look for 'sakai' in title
-        
-          
-          if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
-            
-            if (i.status.toLowerCase() == "scheduled") {
-              let shortlink = i.shortlink;
-              document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
-              document.getElementById("alert-wrapper").className = "alert alert-warning";
-            }
-            // check the status - we don't want to show resolved
-            else if (i.status.toLowerCase() != "resolved") {
-              let shortlink = i.shortlink;
-              document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
-              document.getElementById("alert-wrapper").className = "alert alert-danger";
-            }
-
-            // all is well message
-            else {
-              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
-              document.getElementById("alert-wrapper").className = "alert alert-success";
-            }
-
-            // break the each loop - we just need the first result
-            return false;
-          }
-
-          // default message
-          else {
-            // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-            document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
-            document.getElementById("alert-wrapper").className = "alert alert-success";
-          }
-        });
-      });
-    });
-
-    </script>
 
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -331,28 +348,25 @@
       ga('create', 'UA-67434859-1', 'auto');
       ga('send', 'pageview');
     </script>
-    <script type="text/javascript" src="/library/webjars/ckeditor/4.9.1/full/ckeditor.js?version="></script>
-    <script type="text/javascript" src="/library/editor/ckeditor.launch.js?version="></script>
-    <script type="text/javascript" src="/portal/scripts/sessionstoragemanager.js?version="></script>        
-    <script type="text/javascript" src="/library/templates.js?version="></script>
-    <script type="text/javascript" src="/library/js/trimpath-template-latest.js?version="></script>
-    <script type="text/javascript" src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version="></script>
-    <script type="text/javascript" src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version="></script>
-    <script type="text/javascript" src="/library/js/jquery/jquery.clearsearch.js?version="></script>
-    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.plugins.min.js?version="></script>
-    <script type="text/javascript" src="/library/skin/duke-default/js/morpheus.scripts.min.js?version="></script>
-    <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version="></script>
-	  <script type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.buttons.min.js?version="></script>
-    <script type="text/javascript" src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version="></script>
-    <script type="text/javascript" src="/library/js/jquery/qtip/tutorial.js?version="></script>
-    <script type="text/javascript" src="/library/webjars/cropper/2.3.2/dist/cropper.min.js?version="></script>
+
+    <script async defer type="text/javascript" src="/library/js/headscripts.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/webjars/ckeditor/4.9.1/full/ckeditor.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/editor/ckeditor.launch.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/trimpath-template-latest.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/jquery/jquery.clearsearch.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.buttons.min.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/js/jquery/qtip/tutorial.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/webjars/cropper/2.3.2/dist/cropper.min.js?version=ad"></script>
     <!--[if lt IE 9]>
-    <script src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version="></script>
+      <script async defer src="/library/skin/duke-default/js/ie/sakai.portal.ie.js?version=ad"></script>
     <![endif]-->
-    <script type="text/javascript" src="/library/js/caps-lock-checker.js?version="></script>
-    <script type="text/javascript" src="/library/warpwire.js"></script>
-    <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
-    <script type="text/javascript" src="js/anchorme.min.js"></script>
+    <script async defer type="text/javascript" src="/library/js/caps-lock-checker.js?version=ad"></script>
+    <script async defer type="text/javascript" src="/library/warpwire.js"></script>
+    
     
   </body>
 </html>
