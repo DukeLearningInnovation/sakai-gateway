@@ -220,12 +220,19 @@
                 document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
                 document.getElementById("alert-wrapper").className = "alert alert-warning";
               }
+              // check the status - we don't want to show completed
+              else if (i.status.toLowerCase() == "completed") {
+                let shortlink = i.shortlink;
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Completed ' + i.name + '</a>';
+                document.getElementById("alert-wrapper").className = "alert alert-success";
+              }
               // check the status - we don't want to show resolved
               else if (i.status.toLowerCase() != "resolved") {
                 let shortlink = i.shortlink;
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-danger";
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">Resolved ' + i.name + '</a>';
+                document.getElementById("alert-wrapper").className = "alert alert-warning";
               }
+              
   
               // all is well message
               else {
@@ -322,6 +329,12 @@
             </p>
           </div>
           <div class="alert alert-warning card">
+              <h2 class="card-header"><i class="fa fa-info-circle" aria-hidden="true"></i> Assignments are still being upgraded</h2>
+              <p class="card-body">While the bulk of the Sakai upgrade is complete, we are still upgrading assignments. You may find sites with empty or missing assignments until
+                that process is complete.
+              </p>
+          </div>
+          <div class="alert alert-warning card">
               <h2 class="card-header"><i class="fa fa-info-circle" aria-hidden="true"></i> Comments on student lessons pages disabled.</h2>
               <p class="card-body">The comments tool has been disabled on student lessons pages. Comments are still available on normal lessons pages.
                 Sakai forums or blogs can be used to replicate this functionality.
@@ -339,10 +352,10 @@
         </div>
 
           
-            <div class="alert alert-info card">
-              <h2 class="card-header"><i class="fa fa-wrench" aria-hidden="true"></i> Sakai 12 Release Notes</h2>
-              <p class="card-body">On May 12, 2018, Duke Sakai was upgraded to version 12. <a href="https://confluence.sakaiproject.org/display/DOC/Sakai+12+Release+Notes">Release notes</a> are available for anyone to view.</p>
-            </div>
+          <div class="alert alert-info card">
+            <h2 class="card-header"><i class="fa fa-wrench" aria-hidden="true"></i> Sakai 12 Release Notes</h2>
+            <p class="card-body">On May 12, 2018, Duke Sakai was upgraded to version 12. <a href="https://confluence.sakaiproject.org/display/DOC/Sakai+12+Release+Notes">Release notes</a> are available for anyone to view.</p>
+          </div>
             
         </div> <!--/.col-md-6 -->
       </div><!-- /.row -->
