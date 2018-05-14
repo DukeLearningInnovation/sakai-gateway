@@ -211,8 +211,7 @@
           $.each(data, function(index, i){
   
             var alertTerm = 'sakai'; // look for 'sakai' in title
-          
-            
+
             if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
               
               if (i.status.toLowerCase() == "scheduled") {
@@ -253,9 +252,28 @@
             }
           });
         });
+      
+        // api feed
+        let githubAPI = "https://api.github.com/repos/dukelearninginnovation/sakai-gateway/issues?labels=alert&state=open&sort=updated&direction=desc";
+
+        let c = $("#cards");
+
+        $.getJSON(githubAPI, function(data){
+          // loop through array
+          $.each(data, function(index, i){
+            let l = i.labels.map(function(label){
+              return label.name;
+            });
+            c.append(
+              '<div class="card alert-'+index+' ' + l.join(" ") +'">\
+                <h2 class="card-header">'+i.title+'</h2>\
+                <p class="card-body">'+i.body+'</p>\
+              </div>'
+            );
+          });
+        });
       });
-  
-      </script>
+    </script>
     <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
   </head>
 
@@ -319,14 +337,10 @@
     
     <div class="container ">
       <div class="row">
-        <div class="col-md-12">
-          <div class="alert alert-success card">
-            <h2 class="card-header"><i class="fa fa-usd" aria-hidden="true"></i><i class="fa fa-usd" aria-hidden="true"></i> Better LaTeX and MathML support.</h2>
-            <p class="card-body">Sakai now offers <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/77292/l/875739-how-do-i-add-latex-language-to-my-course-site">
-            better LaTex/MathML support</a> that's easier to use. Insert "$$" before and after mathematical equation to set it apart from the rest of the text.
-            As such, we've disabled the WIRIS editor. If you're new to LaTex, 
-            <a href="https://wch.github.io/latexsheet/">The LaTeX Cheat Sheet</a> is a good resource for getting started.
-            </p>
+        <div class="col-md-12 cards" id="cards">
+          <!-- <div class="alert alert-success card">
+            <h2 class="card-header">{{GITHUB_ISSUE_TITLE}}</h2>
+            <p class="card-body">{{GITHUB_ISSUE_DESCRIPTION}}</p>
           </div>
           <div class="alert alert-warning card">
               <h2 class="card-header"><i class="fa fa-info-circle" aria-hidden="true"></i> Comments on student lessons pages disabled.</h2>
@@ -349,7 +363,7 @@
           <div class="alert alert-info card">
             <h2 class="card-header"><i class="fa fa-wrench" aria-hidden="true"></i> Sakai 12 Release Notes</h2>
             <p class="card-body">On May 12, 2018, Duke Sakai was upgraded to version 12. <a href="https://confluence.sakaiproject.org/display/DOC/Sakai+12+Release+Notes">Release notes</a> are available for anyone to view.</p>
-          </div>
+          </div> -->
             
         </div> <!--/.col-md-6 -->
       </div><!-- /.row -->
