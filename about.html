@@ -191,55 +191,62 @@
     <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=ad" rel="stylesheet">
     <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
     <script type="text/javascript">
-      $(document).ready(function (){
-  
-        // api feed
-        let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
-        $.ajaxSetup({ cache: false });
-        $.getJSON(sakaiAPI, function(data){
-  
-          // loop through array
-          $.each(data, function(index, i){
-  
-            var alertTerm = 'sakai'; // look for 'sakai' in title
-          
+        $(document).ready(function (){
+    
+          // api feed
+          let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+          $.ajaxSetup({ cache: false });
+          $.getJSON(sakaiAPI, function(data){
+    
+            // loop through array
+            $.each(data, function(index, i){
+    
+              var alertTerm = 'sakai'; // look for 'sakai' in title
             
-            if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
               
-              if (i.status.toLowerCase() == "scheduled") {
-                let shortlink = i.shortlink;
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-warning";
+              if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
+                
+                if (i.status.toLowerCase() == "scheduled") {
+                  let shortlink = i.shortlink;
+                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
+                  document.getElementById("alert-wrapper").className = "alert alert-warning";
+                }
+                // check the status - we don't want to show completed
+                else if (i.status.toLowerCase() == "completed") {
+                  let shortlink = i.shortlink;
+                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Completed ' + i.name + '</a>';
+                  document.getElementById("alert-wrapper").className = "alert alert-success";
+                }
+                // check the status - we don't want to show resolved
+                else if (i.status.toLowerCase() != "resolved") {
+                  let shortlink = i.shortlink;
+                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">Resolved ' + i.name + '</a>';
+                  document.getElementById("alert-wrapper").className = "alert alert-warning";
+                }
+                
+    
+                // all is well message
+                else {
+                  // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
+                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
+                  document.getElementById("alert-wrapper").className = "alert alert-success";
+                }
+    
+                // break the each loop - we just need the first result
+                return false;
               }
-              // check the status - we don't want to show resolved
-              else if (i.status.toLowerCase() != "resolved") {
-                let shortlink = i.shortlink;
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-danger";
-              }
-  
-              // all is well message
+    
+              // default message
               else {
                 // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
                 document.getElementById("alert-wrapper").className = "alert alert-success";
               }
-  
-              // break the each loop - we just need the first result
-              return false;
-            }
-  
-            // default message
-            else {
-              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
-              document.getElementById("alert-wrapper").className = "alert alert-success";
-            }
+            });
           });
         });
-      });
-  
-      </script>
+    
+        </script>
     <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
   </head>
 
@@ -278,7 +285,7 @@
           </ul>
           <div class="system-status pull-right">
             <p id="alert-wrapper" class="alert alert-wrapper">
-              <span id="alert-status"></span>
+                    <span id="alert-status"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Checking Sakai Status</span>
             </p>
           </div>
         </div><!-- /.navbar-collapse -->
