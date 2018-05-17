@@ -108,6 +108,7 @@
           border-radius: 2px;
           padding:9px 15px;
           line-height: 20px;
+          text-align: center;
         }
         .margin-top {
           margin-top:50px;
@@ -203,53 +204,57 @@
       $(document).ready(function (){
   
         // api feed
-        let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
         $.ajaxSetup({ cache: false });
         $.getJSON(sakaiAPI, function(data){
   
           // loop through array
-          $.each(data, function(index, i){
+          $.each(data.components, function(index, i){
   
-            var alertTerm = 'sakai'; // look for 'sakai' in title
-          
+            var alertTerm = 'sakai'; 
             
+            // look for 'sakai' in components list
             if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
-              
+
               if (i.status.toLowerCase() == "scheduled") {
                 let shortlink = i.shortlink;
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-warning";
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled maintenance</a>';
+                document.getElementById("alert-wrapper").className = "alert-warning";
               }
               // check the status - we don't want to show completed
               else if (i.status.toLowerCase() == "completed") {
                 let shortlink = i.shortlink;
                 document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Completed ' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-success";
+                document.getElementById("alert-wrapper").className = "alert-success";
               }
               // check the status - we don't want to show resolved
-              else if (i.status.toLowerCase() != "resolved") {
+              else if (i.status.toLowerCase() == "resolved") {
                 let shortlink = i.shortlink;
                 document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">Resolved ' + i.name + '</a>';
-                document.getElementById("alert-wrapper").className = "alert alert-warning";
+                document.getElementById("alert-wrapper").className = "alert-warning";
+              }
+              else if (i.status.toLowerCase() == "operational") {
+                let shortlink = i.shortlink;
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
+                document.getElementById("alert-wrapper").className = "alert-success";
               }
               
   
               // all is well message
               else {
                 // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
-                document.getElementById("alert-wrapper").className = "alert alert-success";
+                document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> Sakai status: ' + i.status;
+                document.getElementById("alert-wrapper").className = "alert-info";
               }
   
               // break the each loop - we just need the first result
               return false;
             }
   
-            // default message
+            // Sakai not in statuspage data
             else {
-              // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-              document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
-              document.getElementById("alert-wrapper").className = "alert alert-success";
+              document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> Issue checking Sakai Status';
+              document.getElementById("alert-wrapper").className = "alert-info";
             }
           });
         });
