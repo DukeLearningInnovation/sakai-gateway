@@ -103,18 +103,21 @@
           height: auto;
           width: 100%;
         }
+        .system-status div {
+          display: inline-block;
+        }
         .system-status .alert {
           margin: 5px 0;
           border-radius: 2px;
           padding:9px 15px;
           line-height: 20px;
+          text-align: center;
         }
         .margin-top {
-          margin-top:80px;
+          margin-top:50px;
         }
         .jumbotron {
           background: #fafafa;
-          margin-top:50px;
           margin-bottom:0;
           
         }
@@ -139,6 +142,7 @@
         }
         .card.alert-success{
           background:#eef6ee;
+          color:#006e01;
         }
         .card.alert-info {
           background:#d9edf7;
@@ -164,9 +168,6 @@
         a[href].btn-primary {
           font-size:1.4em;
         }
-         a[href].btn-primary:hover {
-          
-        }
         
         #colophon {
           margin-top:30px;
@@ -176,10 +177,20 @@
             padding-bottom:30px;
           }
           .system-status {
-            width: 250px;
+            max-width: 300px;
+            width:auto;
           }
         }
-        
+        @media (min-width: 992px) {
+          .container {
+              width: 750px;
+          }
+        }
+        @media (min-width: 1200px) {
+          .container {
+              width: 750px;
+          }
+        }
     </style>
 
     <link type="text/css" href="/library/skin/duke-default/print.css?version=ad" rel="stylesheet" media="print">
@@ -191,62 +202,63 @@
     <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=ad" rel="stylesheet">
     <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
     <script type="text/javascript">
-        $(document).ready(function (){
-    
-          // api feed
-          let sakaiAPI = "https://api.statuspage.io/v1/pages/gpdmpkjblgnc/incidents.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
-          $.ajaxSetup({ cache: false });
-          $.getJSON(sakaiAPI, function(data){
-    
-            // loop through array
-            $.each(data, function(index, i){
-    
-              var alertTerm = 'sakai'; // look for 'sakai' in title
-            
-              
-              if (i.name.toLowerCase().indexOf(alertTerm) >= 0) {
-                
-                if (i.status.toLowerCase() == "scheduled") {
-                  let shortlink = i.shortlink;
-                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Scheduled ' + i.name + '</a>';
-                  document.getElementById("alert-wrapper").className = "alert alert-warning";
-                }
-                // check the status - we don't want to show completed
-                else if (i.status.toLowerCase() == "completed") {
-                  let shortlink = i.shortlink;
-                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> <a href="' + shortlink + '">Completed ' + i.name + '</a>';
-                  document.getElementById("alert-wrapper").className = "alert alert-success";
-                }
-                // check the status - we don't want to show resolved
-                else if (i.status.toLowerCase() != "resolved") {
-                  let shortlink = i.shortlink;
-                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <a href="' + shortlink + '">Resolved ' + i.name + '</a>';
-                  document.getElementById("alert-wrapper").className = "alert alert-warning";
-                }
-                
-    
-                // all is well message
-                else {
-                  // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-                  document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational.';
-                  document.getElementById("alert-wrapper").className = "alert alert-success";
-                }
-    
-                // break the each loop - we just need the first result
-                return false;
-              }
-    
-              // default message
-              else {
-                // document.getElementById('alert-title').innerHTML = "<h4>Sakai Status</h4>";
-                document.getElementById('alert-status').innerHTML = '<i class="fa fa-check-circle" aria-hidden="true"></i> All systems operational';
-                document.getElementById("alert-wrapper").className = "alert alert-success";
-              }
+      $(document).ready(function (){
+  
+        // api feed
+        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+        $.ajaxSetup({ cache: false });
+        $.getJSON(sakaiAPI, function(data){
+          let alertTerm = 'sakai';
+
+          let sakai = [];
+          if (sakai.length == 0) {
+            //Incidents highest priority
+            sakai = data.incidents.filter(function(v){
+              v.type = 'incident';
+              v.icon = 'fa-exclamation-triangle';
+              v.class = 'alert-danger';
+              v.status = '<a href="'+v.shortlink+'">Incident '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
             });
-          });
+          }
+          if (sakai.length == 0) {
+            //Scheduled maintenance second priority
+            sakai = data.scheduled_maintenances.filter(function(v){
+              v.type = 'schedule_maintenance';
+              v.icon =  'fa-info-circle';
+              v.class = 'alert-warning';
+              v.status = '<a href="'+v.shortlink+'">Maintenance '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            //Operational statuses last priority
+            sakai = data.components.filter(function(v){
+              v.type = 'component';
+              v.icon =  'fa-check-circle';
+              v.class = 'alert-success';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            sakai.push({
+              'type':  false
+            });
+          }
+          
+          let ss = $('#system-status');
+          ss.find('#alert-icon')
+            .removeClass('fa-spin fa-circle-o-notch')
+            .addClass(sakai[0].icon);
+          ss.find('#alert-message').html(sakai[0].status);
+          ss.find("#alert-wrapper")
+            .removeClass('alert-info')
+            .addClass(sakai[0].class);
+
         });
-    
-        </script>
+      });
+  
+      </script>
     <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
   </head>
 
@@ -283,10 +295,13 @@
                 <a href="https://sakai-duke.screenstepslive.com/s/sakai_support" title="Find answers to your Sakai questions or get help" role="menuitem">Help Center</a>
             </li>
           </ul>
-          <div class="system-status pull-right">
-            <p id="alert-wrapper" class="alert alert-wrapper">
-                    <span id="alert-status"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Checking Sakai Status</span>
-            </p>
+          <div id="system-status" class="system-status pull-right">
+            <div id="alert-wrapper" class="alert alert-wrapper alert-info">
+                <div id="alert-status">
+                <i id="alert-icon" class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Sakai Status: 
+                <span id="alert-message">Checking</span>
+                </div>
+            </div>
           </div>
         </div><!-- /.navbar-collapse -->
         
