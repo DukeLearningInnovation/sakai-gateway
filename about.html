@@ -180,14 +180,15 @@
             max-width: 300px;
             width:auto;
           }
+          
         }
         @media (min-width: 992px) {
-          .container {
+          .home .container {
               width: 750px;
           }
         }
         @media (min-width: 1200px) {
-          .container {
+          .home .container {
               width: 750px;
           }
         }
@@ -200,69 +201,10 @@
     <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=ad" rel="stylesheet">
     <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=ad" rel="stylesheet">
     <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=ad" rel="stylesheet">
-    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
-    <script type="text/javascript">
-      $(document).ready(function (){
-  
-        // api feed
-        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
-        $.ajaxSetup({ cache: false });
-        $.getJSON(sakaiAPI, function(data){
-          let alertTerm = 'sakai';
-
-          let sakai = [];
-          if (sakai.length == 0) {
-            //Incidents highest priority
-            sakai = data.incidents.filter(function(v){
-              v.type = 'incident';
-              v.icon = 'fa-exclamation-triangle';
-              v.class = 'alert-danger';
-              v.status = '<a href="'+v.shortlink+'">Incident '+v.status+'</a>';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            });
-          }
-          if (sakai.length == 0) {
-            //Scheduled maintenance second priority
-            sakai = data.scheduled_maintenances.filter(function(v){
-              v.type = 'schedule_maintenance';
-              v.icon =  'fa-info-circle';
-              v.class = 'alert-warning';
-              v.status = '<a href="'+v.shortlink+'">Maintenance '+v.status+'</a>';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            }); 
-          }
-          if (sakai.length == 0) {
-            //Operational statuses last priority
-            sakai = data.components.filter(function(v){
-              v.type = 'component';
-              v.icon =  'fa-check-circle';
-              v.class = 'alert-success';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            }); 
-          }
-          if (sakai.length == 0) {
-            sakai.push({
-              'type':  false
-            });
-          }
-          
-          let ss = $('#system-status');
-          ss.find('#alert-icon')
-            .removeClass('fa-spin fa-circle-o-notch')
-            .addClass(sakai[0].icon);
-          ss.find('#alert-message').html(sakai[0].status);
-          ss.find("#alert-wrapper")
-            .removeClass('alert-info')
-            .addClass(sakai[0].class);
-
-        });
-      });
-  
-      </script>
-    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
+   
   </head>
 
-  <body class="dukeSakaiGateway">
+  <body class="dukeSakaiGateway about">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         
@@ -772,7 +714,66 @@
     <footer id="colophon" role="contentinfo"></footer><!-- #colophon -->
     <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
     
+    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
+    <script type="text/javascript">
+      $(document).ready(function (){
+  
+        // api feed
+        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+        $.ajaxSetup({ cache: false });
+        $.getJSON(sakaiAPI, function(data){
+          let alertTerm = 'sakai';
 
+          let sakai = [];
+          if (sakai.length == 0) {
+            //Incidents highest priority
+            sakai = data.incidents.filter(function(v){
+              v.type = 'incident';
+              v.icon = 'fa-exclamation-triangle';
+              v.class = 'alert-danger';
+              v.status = '<a href="'+v.shortlink+'">Incident '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            });
+          }
+          if (sakai.length == 0) {
+            //Scheduled maintenance second priority
+            sakai = data.scheduled_maintenances.filter(function(v){
+              v.type = 'schedule_maintenance';
+              v.icon =  'fa-info-circle';
+              v.class = 'alert-warning';
+              v.status = '<a href="'+v.shortlink+'">Maintenance '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            //Operational statuses last priority
+            sakai = data.components.filter(function(v){
+              v.type = 'component';
+              v.icon =  'fa-check-circle';
+              v.class = 'alert-success';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            sakai.push({
+              'type':  false
+            });
+          }
+          
+          let ss = $('#system-status');
+          ss.find('#alert-icon')
+            .removeClass('fa-spin fa-circle-o-notch')
+            .addClass(sakai[0].icon);
+          ss.find('#alert-message').html(sakai[0].status);
+          ss.find("#alert-wrapper")
+            .removeClass('alert-info')
+            .addClass(sakai[0].class);
+
+        });
+      });
+  
+      </script>
+    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
     
 
     <script type="text/javascript">

@@ -182,12 +182,12 @@
           }
         }
         @media (min-width: 992px) {
-          .container {
+          .home .container {
               width: 750px;
           }
         }
         @media (min-width: 1200px) {
-          .container {
+          .home .container {
               width: 750px;
           }
         }
@@ -200,69 +200,10 @@
     <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.core.min.css?version=ad" rel="stylesheet">
     <link type="text/css" href="/library/webjars/pnotify/2.1.0/pnotify.buttons.min.css?version=ad" rel="stylesheet">
     <link type="text/css" href="/library/webjars/cropper/2.3.2/dist/cropper.min.css?version=ad" rel="stylesheet">
-    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
-    <script type="text/javascript">
-      $(document).ready(function (){
-  
-        // api feed
-        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
-        $.ajaxSetup({ cache: false });
-        $.getJSON(sakaiAPI, function(data){
-          let alertTerm = 'sakai';
-
-          let sakai = [];
-          if (sakai.length == 0) {
-            //Incidents highest priority
-            sakai = data.incidents.filter(function(v){
-              v.type = 'incident';
-              v.icon = 'fa-exclamation-triangle';
-              v.class = 'alert-danger';
-              v.status = '<a href="'+v.shortlink+'">Incident '+v.status+'</a>';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            });
-          }
-          if (sakai.length == 0) {
-            //Scheduled maintenance second priority
-            sakai = data.scheduled_maintenances.filter(function(v){
-              v.type = 'schedule_maintenance';
-              v.icon =  'fa-info-circle';
-              v.class = 'alert-warning';
-              v.status = '<a href="'+v.shortlink+'">Maintenance '+v.status+'</a>';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            }); 
-          }
-          if (sakai.length == 0) {
-            //Operational statuses last priority
-            sakai = data.components.filter(function(v){
-              v.type = 'component';
-              v.icon =  'fa-check-circle';
-              v.class = 'alert-success';
-              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
-            }); 
-          }
-          if (sakai.length == 0) {
-            sakai.push({
-              'type':  false
-            });
-          }
-          
-          let ss = $('#system-status');
-          ss.find('#alert-icon')
-            .removeClass('fa-spin fa-circle-o-notch')
-            .addClass(sakai[0].icon);
-          ss.find('#alert-message').html(sakai[0].status);
-          ss.find("#alert-wrapper")
-            .removeClass('alert-info')
-            .addClass(sakai[0].class);
-
-        });
-      });
-  
-      </script>
-    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
+    
   </head>
 
-  <body class="dukeSakaiGateway">
+  <body class="dukeSakaiGateway home">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         
@@ -335,8 +276,8 @@
           <div class="alert alert-success card">
             <h2 class="card-header"><i class="fa fa-usd" aria-hidden="true"></i><i class="fa fa-usd" aria-hidden="true"></i> Better LaTeX and MathML support <i class="fa fa-usd" aria-hidden="true"></i><i class="fa fa-usd" aria-hidden="true"></i></h2>
             <p class="card-body">Sakai now offers <a href="https://sakai-duke.screenstepslive.com/s/sakai_support/m/77292/l/875739-how-do-i-add-latex-language-to-my-course-site">
-            better LaTex/MathML support</a> that's easier to use. Once enabled, insert "$$" before and after a mathematical equation to set it apart from the rest of the text.
-            As such, we've disabled the WIRIS editor. If you're new to LaTex, 
+            better LaTex/MathML support</a> that's easier to use. As such, we've disabled the WIRIS editor.<br /><br /> Once enabled, insert "$$" before and after a mathematical equation to set it apart from the rest of the text.
+             If you're new to LaTex, 
             <a href="https://wch.github.io/latexsheet/">the LaTeX Cheat Sheet</a> is a good resource for getting started.
             </p>
           </div>
@@ -369,7 +310,66 @@
     <script type="text/javascript" src="https://brandbar.oit.duke.edu/footer_new/scripts/build_footer.php"></script>
     
 
-    
+    <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js?version=ad"></script>
+    <script type="text/javascript">
+      $(document).ready(function (){
+  
+        // api feed
+        let sakaiAPI = "https://gpdmpkjblgnc.statuspage.io/api/v2/summary.json?api_key=51260dcb-58c9-4db6-895c-307909ad071f";
+        $.ajaxSetup({ cache: false });
+        $.getJSON(sakaiAPI, function(data){
+          let alertTerm = 'sakai';
+
+          let sakai = [];
+          if (sakai.length == 0) {
+            //Incidents highest priority
+            sakai = data.incidents.filter(function(v){
+              v.type = 'incident';
+              v.icon = 'fa-exclamation-triangle';
+              v.class = 'alert-danger';
+              v.status = '<a href="'+v.shortlink+'">Incident '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            });
+          }
+          if (sakai.length == 0) {
+            //Scheduled maintenance second priority
+            sakai = data.scheduled_maintenances.filter(function(v){
+              v.type = 'schedule_maintenance';
+              v.icon =  'fa-info-circle';
+              v.class = 'alert-warning';
+              v.status = '<a href="'+v.shortlink+'">Maintenance '+v.status+'</a>';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            //Operational statuses last priority
+            sakai = data.components.filter(function(v){
+              v.type = 'component';
+              v.icon =  'fa-check-circle';
+              v.class = 'alert-success';
+              return v.name.toLowerCase().indexOf(alertTerm) >= 0;
+            }); 
+          }
+          if (sakai.length == 0) {
+            sakai.push({
+              'type':  false
+            });
+          }
+          
+          let ss = $('#system-status');
+          ss.find('#alert-icon')
+            .removeClass('fa-spin fa-circle-o-notch')
+            .addClass(sakai[0].icon);
+          ss.find('#alert-message').html(sakai[0].status);
+          ss.find("#alert-wrapper")
+            .removeClass('alert-info')
+            .addClass(sakai[0].class);
+
+        });
+      });
+  
+      </script>
+    <script type="text/javascript" src="/library/webjars/bootstrap/3.3.7/js/bootstrap.min.js?version=ad"></script>
 
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -387,8 +387,7 @@
     <script async defer type="text/javascript" src="/library/js/jquery/bgiframe/jquery.bgiframe.min.js?version=ad"></script>
     <script async defer type="text/javascript" src="/library/js/jquery/cluetip/1.2.10/jquery.cluetip.min.js?version=ad"></script>
     <script async defer type="text/javascript" src="/library/js/jquery/jquery.clearsearch.js?version=ad"></script>
-    <script async defer type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.core.min.js?version=ad"></script>
-    <script async defer type="text/javascript" src="/library/webjars//pnotify/2.1.0/pnotify.buttons.min.js?version=ad"></script>
+
     <script async defer type="text/javascript" src="/library/js/jquery/qtip/jquery.qtip-latest.min.js?version=ad"></script>
     <script async defer type="text/javascript" src="/library/js/jquery/qtip/tutorial.js?version=ad"></script>
     <script async defer type="text/javascript" src="/library/webjars/cropper/2.3.2/dist/cropper.min.js?version=ad"></script>
